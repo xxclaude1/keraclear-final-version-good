@@ -16,7 +16,7 @@
   .kc-timeline__image-wrap {
     border-radius: 12px;
     overflow: hidden;
-    background: #111;
+    background: #f5f5f5;
   }
 
   .kc-timeline__image-wrap img {
@@ -33,7 +33,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--kc-text-secondary, #666666);
+    color: var(--kc-text-secondary, #555);
     font-size: 16px;
     border: 2px dashed var(--kc-border, #E5E5E5);
   }
@@ -41,13 +41,12 @@
   .kc-timeline__content {}
 
   .kc-timeline__heading {
-    font-family: var(--font-heading, 'Playfair Display', serif);
+    font-family: var(--font-heading, 'Lora', serif);
     font-size: 32px;
     font-weight: 700;
     color: var(--kc-text, #1A1A1A);
     line-height: 1.2;
     margin: 0 0 32px;
-    text-transform: uppercase;
   }
 
   .kc-timeline__heading em {
@@ -138,7 +137,7 @@
       <div class="kc-timeline__days">
         {%- for block in section.blocks -%}
           <div class="kc-timeline__day" {{ block.shopify_attributes }}>
-            <span class="kc-timeline__day-icon">📅</span>
+
             <span class="kc-timeline__day-label">{{ block.settings.day }}</span>
             <span class="kc-timeline__day-text">– {{ block.settings.text }}</span>
           </div>

@@ -1,24 +1,30 @@
 /* ==========================================================================
    Keraclear Design System
-   Dr. Landford's Medical Brand — Gundry MD Reference
+   Editorial Advertorial Style — Lora + Inter
    ========================================================================== */
 
 /* --- CSS Variables --- */
 :root {
   /* Colors */
   --kc-white: #FFFFFF;
-  --kc-alt: #F5F5FA;
-  --kc-blue: #2E7D32;
-  --kc-blue-hover: #1B5E20;
+  --kc-cream: #fffbea;
+  --kc-alt: #fffbea;
+  --kc-green: #2E7D32;
+  --kc-green-hover: #1B5E20;
+  --kc-gold: #f39c12;
   --kc-text: #1A1A1A;
-  --kc-text-secondary: #666666;
+  --kc-text-secondary: #555555;
   --kc-border: #E5E5E5;
-  --kc-star: #2E7D32;
-  --kc-badge-bg: #E8F5E9;
+  --kc-star: #f39c12;
+  --kc-badge-bg: #fffbea;
   --kc-navy: #1A3D1F;
 
+  /* Legacy aliases */
+  --kc-blue: #2E7D32;
+  --kc-blue-hover: #1B5E20;
+
   /* Typography */
-  --font-heading: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-heading: 'Lora', Georgia, 'Times New Roman', serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
   /* Layout */
@@ -64,13 +70,13 @@ img {
 }
 
 a {
-  color: var(--kc-blue);
+  color: var(--kc-green);
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 a:hover {
-  color: var(--kc-blue-hover);
+  color: var(--kc-green-hover);
 }
 
 ul, ol {
@@ -227,30 +233,29 @@ p:last-child {
   cursor: pointer;
   transition: all 0.2s ease;
   text-align: center;
-  text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .kc-btn--primary {
-  background-color: var(--kc-blue);
+  background-color: var(--kc-green);
   color: var(--kc-white);
-  border-color: var(--kc-blue);
+  border-color: var(--kc-green);
 }
 
 .kc-btn--primary:hover {
-  background-color: var(--kc-blue-hover);
-  border-color: var(--kc-blue-hover);
+  background-color: var(--kc-green-hover);
+  border-color: var(--kc-green-hover);
   color: var(--kc-white);
 }
 
 .kc-btn--outline {
   background-color: transparent;
-  color: var(--kc-blue);
-  border-color: var(--kc-blue);
+  color: var(--kc-green);
+  border-color: var(--kc-green);
 }
 
 .kc-btn--outline:hover {
-  background-color: var(--kc-blue);
+  background-color: var(--kc-green);
   color: var(--kc-white);
 }
 
@@ -284,8 +289,7 @@ p:last-child {
   font-weight: 600;
   border-radius: 20px;
   background-color: var(--kc-badge-bg);
-  color: var(--kc-blue);
-  text-transform: uppercase;
+  color: var(--kc-green);
   letter-spacing: 0.5px;
 }
 
@@ -338,7 +342,7 @@ p:last-child {
   transform: translateX(-50%);
   z-index: 10000;
   padding: 12px 24px;
-  background: var(--kc-blue);
+  background: var(--kc-green);
   color: var(--kc-white);
   border-radius: var(--btn-radius);
   font-weight: 600;

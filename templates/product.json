@@ -12,35 +12,35 @@
         "benefit-1": {
           "type": "benefit",
           "settings": {
-            "icon": "🔬",
+            "icon": "✓",
             "text": "Join thousands who say — it WORKS!"
           }
         },
         "benefit-2": {
           "type": "benefit",
           "settings": {
-            "icon": "💧",
+            "icon": "✓",
             "text": "Penetrates through the nail bed to reach fungus at its source."
           }
         },
         "benefit-3": {
           "type": "benefit",
           "settings": {
-            "icon": "✨",
+            "icon": "✓",
             "text": "Restores clarity, strength, and healthy nail growth."
           }
         },
         "benefit-4": {
           "type": "benefit",
           "settings": {
-            "icon": "🛡️",
+            "icon": "✓",
             "text": "Doctor-formulated with clinically-studied natural ingredients."
           }
         },
         "benefit-5": {
           "type": "benefit",
           "settings": {
-            "icon": "⚡",
+            "icon": "✓",
             "text": "Fast-absorbing oil formula — no residue, no mess."
           }
         },
@@ -150,23 +150,23 @@
       "blocks": {
         "b-1": {
           "type": "benefit",
-          "settings": { "icon": "🛡️", "text": "Fights Fungus at the Source" }
+          "settings": { "icon": "✓", "text": "Fights Fungus at the Source" }
         },
         "b-2": {
           "type": "benefit",
-          "settings": { "icon": "💧", "text": "Deep Nail Penetration" }
+          "settings": { "icon": "✓", "text": "Deep Nail Penetration" }
         },
         "b-3": {
           "type": "benefit",
-          "settings": { "icon": "💪", "text": "Nourishes & Strengthens Nails" }
+          "settings": { "icon": "✓", "text": "Nourishes & Strengthens Nails" }
         },
         "b-4": {
           "type": "benefit",
-          "settings": { "icon": "🔄", "text": "Prevents Recurrence" }
+          "settings": { "icon": "✓", "text": "Prevents Recurrence" }
         },
         "b-5": {
           "type": "benefit",
-          "settings": { "icon": "✨", "text": "Restores Nail Clarity" }
+          "settings": { "icon": "✓", "text": "Restores Nail Clarity" }
         }
       },
       "block_order": ["b-1", "b-2", "b-3", "b-4", "b-5"]
@@ -217,7 +217,7 @@
         "step-1": {
           "type": "step",
           "settings": {
-            "icon": "🧼",
+            "icon": "1",
             "title": "Clean & Dry",
             "step_text": "Clean and dry the affected nail(s) thoroughly. This helps the formula absorb properly for maximum effectiveness."
           }
@@ -225,7 +225,7 @@
         "step-2": {
           "type": "step",
           "settings": {
-            "icon": "💧",
+            "icon": "2",
             "title": "Apply 2-3 Drops",
             "step_text": "Apply 2-3 drops of Keraclear directly to each affected nail. Gently massage into the nail and surrounding cuticle area."
           }
@@ -233,7 +233,7 @@
         "step-3": {
           "type": "step",
           "settings": {
-            "icon": "🔄",
+            "icon": "3",
             "title": "Stay Consistent",
             "step_text": "Use daily for at least 8-12 weeks. Most people see noticeable improvements within the first 4-6 weeks of consistent use."
           }
@@ -296,8 +296,8 @@
     "product-guarantee": {
       "type": "kc-guarantee",
       "settings": {
-        "heading": "90-Day Money-Back Guarantee",
-        "text": "We'd be shocked if you didn't see the results, and enjoy the benefits of Keraclear. But in the highly unlikely event that you're not happy in any way — we'll give you every cent back. No hassle. No hoops to jump through."
+        "heading": "90-Day \u201cClear Nail\u201d Money-Back Guarantee",
+        "text": "Try KeraClear for a full 90 days. If you do not see a visible difference in the clarity, thickness, and health of your nails — send it back for a complete refund. No questions asked. Dr. Langford stands behind every bottle."
       }
     },
     "faq": {

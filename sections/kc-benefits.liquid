@@ -1,6 +1,6 @@
 <style>
   .kc-benefits {
-    background: linear-gradient(135deg, #1A3D1F 0%, #2E5A33 100%);
+    background: #FFFFFF;
     padding: 80px var(--content-padding, 24px);
     position: relative;
     overflow: hidden;
@@ -30,26 +30,25 @@
   .kc-benefits__image-placeholder {
     width: 100%;
     aspect-ratio: 3 / 4;
-    background: rgba(255,255,255,0.1);
+    background: rgba(0,0,0,0.05);
     border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: rgba(255,255,255,0.5);
+    color: rgba(0,0,0,0.4);
     font-size: 16px;
-    border: 2px dashed rgba(255,255,255,0.2);
+    border: 2px dashed rgba(0,0,0,0.15);
   }
 
   .kc-benefits__content {}
 
   .kc-benefits__heading {
-    font-family: var(--font-heading, 'Playfair Display', serif);
+    font-family: var(--font-heading, 'Lora', serif);
     font-size: 32px;
     font-weight: 700;
-    color: #FFFFFF;
+    color: var(--kc-text, #1A1A1A);
     line-height: 1.2;
     margin: 0 0 32px;
-    text-transform: uppercase;
   }
 
   .kc-benefits__list {
@@ -62,14 +61,14 @@
     display: flex;
     align-items: center;
     gap: 14px;
-    background: rgba(255,255,255,0.12);
+    background: rgba(0,0,0,0.04);
     border-radius: 8px;
     padding: 16px 20px;
     transition: background 0.2s ease;
   }
 
   .kc-benefits__item:hover {
-    background: rgba(255,255,255,0.18);
+    background: rgba(0,0,0,0.08);
   }
 
   .kc-benefits__item-icon {
@@ -87,7 +86,7 @@
     font-family: var(--font-body, 'Inter', sans-serif);
     font-size: 16px;
     font-weight: 600;
-    color: #FFFFFF;
+    color: var(--kc-text-secondary, #555);
   }
 
   @media (max-width: 768px) {
