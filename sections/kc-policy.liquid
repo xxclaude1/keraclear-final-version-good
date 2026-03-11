@@ -1,0 +1,106 @@
+<section class="kc-policy">
+  <div class="kc-policy__container">
+    <h1 class="kc-policy__heading">{{ policy.title }}</h1>
+    <div class="kc-policy__content">
+      {{ policy.body }}
+    </div>
+  </div>
+</section>
+
+<style>
+  .kc-policy {
+    background-color: #FFFFFF;
+    padding: 80px 0;
+  }
+
+  .kc-policy__container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .kc-policy__heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: #1A1A1A;
+    text-align: center;
+    margin: 0 0 48px 0;
+  }
+
+  .kc-policy__content {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    color: #666666;
+    line-height: 1.7;
+  }
+
+  .kc-policy__content h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #1A1A1A;
+    margin: 32px 0 16px;
+  }
+
+  .kc-policy__content h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #1A1A1A;
+    margin: 24px 0 12px;
+  }
+
+  .kc-policy__content p {
+    margin-bottom: 16px;
+  }
+
+  .kc-policy__content ul,
+  .kc-policy__content ol {
+    padding-left: 24px;
+    margin-bottom: 16px;
+  }
+
+  .kc-policy__content ul {
+    list-style-type: disc;
+  }
+
+  .kc-policy__content ol {
+    list-style-type: decimal;
+  }
+
+  .kc-policy__content li {
+    margin-bottom: 8px;
+  }
+
+  .kc-policy__content a {
+    color: #2E7D32;
+    text-decoration: none;
+  }
+
+  .kc-policy__content a:hover {
+    text-decoration: underline;
+  }
+
+  .kc-policy__content strong,
+  .kc-policy__content b {
+    color: #1A1A1A;
+  }
+
+  @media screen and (max-width: 749px) {
+    .kc-policy {
+      padding: 48px 0;
+    }
+
+    .kc-policy__heading {
+      font-size: 26px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "KC Policy",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,321 @@
+<style>
+  /* --- Footer --- */
+  .kc-footer {
+    background-color: var(--kc-navy);
+    color: rgba(255, 255, 255, 0.85);
+    padding: 64px 0 0;
+  }
+
+  .kc-footer a {
+    color: rgba(255, 255, 255, 0.85);
+    transition: color 0.2s ease;
+  }
+
+  .kc-footer a:hover {
+    color: var(--kc-white);
+  }
+
+  .kc-footer__inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+  }
+
+  .kc-footer__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1.5fr;
+    gap: 48px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .kc-footer__heading {
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--kc-white);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+  }
+
+  .kc-footer__links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .kc-footer__link {
+    font-size: 15px;
+    line-height: 1.4;
+  }
+
+  /* Newsletter */
+  .kc-footer__newsletter-text {
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .kc-footer__newsletter-form {
+    display: flex;
+    gap: 0;
+  }
+
+  .kc-footer__newsletter-input {
+    flex: 1;
+    padding: 12px 16px;
+    font-family: var(--font-body);
+    font-size: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-right: none;
+    border-radius: var(--btn-radius) 0 0 var(--btn-radius);
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--kc-white);
+    outline: none;
+    min-height: 48px;
+  }
+
+  .kc-footer__newsletter-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .kc-footer__newsletter-input:focus {
+    border-color: var(--kc-blue);
+  }
+
+  .kc-footer__newsletter-btn {
+    padding: 12px 24px;
+    background-color: var(--kc-blue);
+    color: var(--kc-white);
+    border: 1px solid var(--kc-blue);
+    border-radius: 0 var(--btn-radius) var(--btn-radius) 0;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    min-height: 48px;
+  }
+
+  .kc-footer__newsletter-btn:hover {
+    background-color: var(--kc-blue-hover);
+  }
+
+  /* Phone row */
+  .kc-footer__phone-row {
+    padding: 24px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--kc-white);
+  }
+
+  .kc-footer__phone-row svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .kc-footer__phone-row a {
+    color: var(--kc-white);
+  }
+
+  /* Disclaimer */
+  .kc-footer__disclaimer {
+    padding: 24px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .kc-footer__disclaimer-text {
+    font-size: 13px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.5);
+    text-align: center;
+  }
+
+  /* Bottom bar */
+  .kc-footer__bottom {
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .kc-footer__copyright {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .kc-footer__legal {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .kc-footer__legal a {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .kc-footer__legal a:hover {
+    color: var(--kc-white);
+  }
+
+  /* Responsive */
+  @media screen and (max-width: 749px) {
+    .kc-footer {
+      padding: 48px 0 0;
+    }
+
+    .kc-footer__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    .kc-footer__bottom {
+      justify-content: center;
+      text-align: center;
+    }
+
+    .kc-footer__legal {
+      justify-content: center;
+    }
+  }
+
+  @media screen and (max-width: 479px) {
+    .kc-footer__grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+
+    .kc-footer__newsletter-form {
+      flex-direction: column;
+    }
+
+    .kc-footer__newsletter-input {
+      border-right: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: var(--btn-radius);
+    }
+
+    .kc-footer__newsletter-btn {
+      border-radius: var(--btn-radius);
+    }
+  }
+</style>
+
+<footer class="kc-footer" data-section-id="{{ section.id }}">
+  <div class="kc-footer__inner">
+    <!-- Main grid -->
+    <div class="kc-footer__grid">
+      <!-- Shop column -->
+      <div>
+        <h4 class="kc-footer__heading">Shop</h4>
+        <div class="kc-footer__links">
+          <a href="/products/keraclear-antifungal-nail-serum" class="kc-footer__link">Keraclear Serum</a>
+          <a href="/products/keraclear-antifungal-nail-serum" class="kc-footer__link">Subscribe & Save</a>
+          <a href="/pages/about" class="kc-footer__link">About Dr. Landford</a>
+        </div>
+      </div>
+
+      <!-- Contact column -->
+      <div>
+        <h4 class="kc-footer__heading">Help</h4>
+        <div class="kc-footer__links">
+          <a href="/pages/contact" class="kc-footer__link">Contact Us</a>
+          <a href="/policies/refund-policy" class="kc-footer__link">Returns & Refunds</a>
+          <a href="/policies/shipping-policy" class="kc-footer__link">Shipping Info</a>
+          <a href="/pages/faq" class="kc-footer__link">FAQ</a>
+        </div>
+      </div>
+
+      <!-- About column -->
+      <div>
+        <h4 class="kc-footer__heading">About</h4>
+        <div class="kc-footer__links">
+          <a href="/pages/about" class="kc-footer__link">Our Story</a>
+          <a href="/products/keraclear-antifungal-nail-serum#reviews" class="kc-footer__link">Reviews</a>
+          <a href="mailto:support@keraclear.com" class="kc-footer__link">support@keraclear.com</a>
+        </div>
+      </div>
+
+      <!-- Newsletter column -->
+      <div>
+        <h4 class="kc-footer__heading">Stay Updated</h4>
+        <p class="kc-footer__newsletter-text">
+          Get health tips from Dr. Landford and exclusive savings delivered to your inbox.
+        </p>
+        <form class="kc-footer__newsletter-form" action="/contact#contact_form" method="post">
+          <input type="hidden" name="form_type" value="customer">
+          <input type="hidden" name="utf8" value="✓">
+          <input
+            type="email"
+            name="contact[email]"
+            class="kc-footer__newsletter-input"
+            placeholder="Enter your email"
+            required
+            aria-label="Email address"
+            autocomplete="email"
+          >
+          <button type="submit" class="kc-footer__newsletter-btn">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Phone -->
+    {%- if section.settings.phone_number != blank -%}
+      <div class="kc-footer__phone-row">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+        <a href="tel:{{ section.settings.phone_number | remove: ' ' | remove: '-' | remove: '(' | remove: ')' }}">
+          {{ section.settings.phone_number }}
+        </a>
+      </div>
+    {%- endif -%}
+
+    <!-- FDA Disclaimer -->
+    <div class="kc-footer__disclaimer">
+      <p class="kc-footer__disclaimer-text">
+        {{ section.settings.fda_disclaimer }}
+      </p>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="kc-footer__bottom">
+      <span class="kc-footer__copyright">&copy; {{ 'now' | date: '%Y' }} Keraclear. All rights reserved.</span>
+      <div class="kc-footer__legal">
+        <a href="/policies/privacy-policy">Privacy Policy</a>
+        <a href="/policies/terms-of-service">Terms of Service</a>
+        <a href="/policies/refund-policy">Refund Policy</a>
+        <a href="/policies/shipping-policy">Shipping Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "class": "kc-footer-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "phone_number",
+      "label": "Phone number",
+      "default": "1-800-555-0199"
+    },
+    {
+      "type": "textarea",
+      "id": "fda_disclaimer",
+      "label": "FDA Disclaimer",
+      "default": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. Use only as directed. Consult your healthcare provider before using supplements or providing supplements to children under the age of 18. The information provided herein is intended for your general knowledge only and is not a substitute for medical advice."
+    }
+  ]
+}
+{% endschema %}

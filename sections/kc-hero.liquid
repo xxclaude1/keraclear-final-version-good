@@ -1,0 +1,234 @@
+<style>
+  .kc-hero {
+    background-color: var(--kc-white);
+    padding: 60px 0 80px;
+    overflow: hidden;
+  }
+
+  .kc-hero__inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+
+  .kc-hero__content {
+    max-width: 520px;
+  }
+
+  .kc-hero__eyebrow {
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--kc-blue);
+    margin-bottom: 16px;
+  }
+
+  .kc-hero__heading {
+    font-family: var(--font-heading);
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--kc-text);
+    margin-bottom: 20px;
+  }
+
+  .kc-hero__text {
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--kc-text-secondary);
+    margin-bottom: 32px;
+  }
+
+  .kc-hero__buttons {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+
+  .kc-hero__disclaimer {
+    font-size: 14px;
+    color: var(--kc-text-secondary);
+    line-height: 1.5;
+  }
+
+  .kc-hero__image-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .kc-hero__image {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    border-radius: var(--img-radius);
+  }
+
+  .kc-hero__image-placeholder {
+    width: 100%;
+    max-width: 500px;
+    aspect-ratio: 4 / 5;
+    background-color: var(--kc-alt);
+    border-radius: var(--img-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--kc-text-secondary);
+    font-size: 16px;
+    text-align: center;
+    padding: 24px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .kc-hero {
+      padding: 40px 0 48px;
+    }
+
+    .kc-hero__inner {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+
+    .kc-hero__heading {
+      font-size: 32px;
+    }
+
+    .kc-hero__content {
+      max-width: none;
+      text-align: center;
+    }
+
+    .kc-hero__buttons {
+      justify-content: center;
+    }
+
+    .kc-hero__disclaimer {
+      text-align: center;
+    }
+
+    .kc-hero__image-wrapper {
+      order: -1;
+    }
+  }
+</style>
+
+<section class="kc-hero" data-section-id="{{ section.id }}">
+  <div class="kc-hero__inner">
+    <div class="kc-hero__content">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="kc-hero__eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+
+      <h1 class="kc-hero__heading">{{ section.settings.heading }}</h1>
+
+      {%- if section.settings.text != blank -%}
+        <p class="kc-hero__text">{{ section.settings.text }}</p>
+      {%- endif -%}
+
+      <div class="kc-hero__buttons">
+        {%- if section.settings.button_text != blank -%}
+          <a href="{{ section.settings.button_url }}" class="kc-btn kc-btn--primary">
+            {{ section.settings.button_text }}
+          </a>
+        {%- endif -%}
+        {%- if section.settings.button_2_text != blank -%}
+          <a href="{{ section.settings.button_2_url }}" class="kc-btn kc-btn--outline">
+            {{ section.settings.button_2_text }}
+          </a>
+        {%- endif -%}
+      </div>
+
+      {%- if section.settings.disclaimer != blank -%}
+        <p class="kc-hero__disclaimer">{{ section.settings.disclaimer }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="kc-hero__image-wrapper">
+      {%- if section.settings.image != blank -%}
+        <img
+          src="{{ section.settings.image | image_url: width: 1000 }}"
+          alt="{{ section.settings.image.alt | default: 'Keraclear product' }}"
+          class="kc-hero__image"
+          width="500"
+          height="625"
+          loading="eager"
+        >
+      {%- else -%}
+        <div class="kc-hero__image-placeholder">
+          Product image<br>Upload in theme editor
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "Doctor-Formulated"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Clinically-Studied Nail Health From a Board-Certified Dermatologist"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Description",
+      "default": "Dr. Landford's proprietary antifungal serum penetrates through the nail bed to fight fungus at its source — naturally, safely, and effectively."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Product image"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Primary button text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Primary button link"
+    },
+    {
+      "type": "text",
+      "id": "button_2_text",
+      "label": "Secondary button text",
+      "default": "Log In"
+    },
+    {
+      "type": "url",
+      "id": "button_2_url",
+      "label": "Secondary button link"
+    },
+    {
+      "type": "text",
+      "id": "disclaimer",
+      "label": "Disclaimer text",
+      "default": "90-day money-back guarantee on all orders."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero"
+    }
+  ]
+}
+{% endschema %}

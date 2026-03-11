@@ -1,0 +1,25 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "Footer",
+  "type": "footer",
+  "sections": {
+    "kc-footer": {
+      "type": "kc-footer",
+      "settings": {
+        "phone_number": "1-800-555-0199",
+        "fda_disclaimer": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. Use only as directed. Consult your healthcare provider before using supplements or providing supplements to children under the age of 18. The information provided herein is intended for your general knowledge only and is not a substitute for medical advice."
+      }
+    }
+  },
+  "order": [
+    "kc-footer"
+  ]
+}

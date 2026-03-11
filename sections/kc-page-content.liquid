@@ -1,0 +1,46 @@
+<div class="kc-section">
+  <div class="kc-container">
+    <div class="kc-page-content">
+      {{ page.content }}
+    </div>
+  </div>
+</div>
+
+<style>
+  .kc-page-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .kc-page-content h1,
+  .kc-page-content h2,
+  .kc-page-content h3 {
+    margin-bottom: 16px;
+  }
+
+  .kc-page-content p {
+    margin-bottom: 1em;
+  }
+
+  .kc-page-content ul,
+  .kc-page-content ol {
+    margin-bottom: 1em;
+    padding-left: 24px;
+    list-style: disc;
+  }
+
+  .kc-page-content ol {
+    list-style: decimal;
+  }
+
+  .kc-page-content li {
+    margin-bottom: 8px;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Page Content",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,244 @@
+<style>
+  .kc-comparison {
+    background: var(--kc-white, #FFFFFF);
+    padding: 80px var(--content-padding, 24px);
+  }
+
+  .kc-comparison__container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .kc-comparison__heading {
+    font-family: var(--font-heading, 'Playfair Display', serif);
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--kc-text, #1A1A1A);
+    text-align: center;
+    margin: 0 0 48px;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .kc-comparison__heading em {
+    color: var(--kc-blue, #2E7D32);
+    font-style: normal;
+  }
+
+  /* Brand logos row */
+  .kc-comparison__brands {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 24px;
+    padding: 0 20px;
+  }
+
+  .kc-comparison__brand {
+    text-align: center;
+  }
+
+  .kc-comparison__brand-img {
+    max-height: 60px;
+    margin: 0 auto 8px;
+  }
+
+  .kc-comparison__brand-name {
+    font-family: var(--font-heading, 'Playfair Display', serif);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--kc-text, #1A1A1A);
+  }
+
+  .kc-comparison__brand-other {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 16px;
+    color: var(--kc-text-secondary, #666666);
+  }
+
+  /* Comparison rows */
+  .kc-comparison__table {
+    width: 100%;
+  }
+
+  .kc-comparison__row {
+    display: flex;
+    align-items: center;
+    padding: 18px 20px;
+    border-bottom: 1px solid var(--kc-border, #E5E5E5);
+  }
+
+  .kc-comparison__row:first-child {
+    border-top: 1px solid var(--kc-border, #E5E5E5);
+  }
+
+  .kc-comparison__check-us {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--kc-blue, #2E7D32);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .kc-comparison__check-us svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: #FFFFFF;
+    stroke-width: 3;
+  }
+
+  .kc-comparison__feature {
+    flex: 1;
+    text-align: center;
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--kc-text, #1A1A1A);
+  }
+
+  .kc-comparison__check-them {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #F5F5F5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .kc-comparison__check-them svg {
+    width: 14px;
+    height: 14px;
+    fill: none;
+    stroke: #999999;
+    stroke-width: 3;
+  }
+
+  /* CTA */
+  .kc-comparison__cta {
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  .kc-comparison__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 40px;
+    background: var(--kc-blue, #2E7D32);
+    color: #FFFFFF;
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+
+  .kc-comparison__btn:hover {
+    background: var(--kc-blue-hover, #1B5E20);
+    color: #FFFFFF;
+  }
+
+  .kc-comparison__guarantee-text {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 14px;
+    color: var(--kc-text-secondary, #666666);
+    margin-top: 12px;
+  }
+
+  @media (max-width: 768px) {
+    .kc-comparison {
+      padding: 48px var(--content-padding, 24px);
+    }
+
+    .kc-comparison__heading {
+      font-size: 26px;
+    }
+
+    .kc-comparison__feature {
+      font-size: 14px;
+    }
+
+    .kc-comparison__row {
+      padding: 14px 12px;
+    }
+  }
+</style>
+
+<section class="kc-comparison" id="comparison">
+  <div class="kc-comparison__container">
+    <h2 class="kc-comparison__heading">The <em>Keraclear</em> Difference</h2>
+
+    <div class="kc-comparison__brands">
+      <div class="kc-comparison__brand">
+        <span class="kc-comparison__brand-name">Keraclear</span>
+      </div>
+      <div class="kc-comparison__brand">
+        <span class="kc-comparison__brand-other">Other Nail Treatments</span>
+      </div>
+    </div>
+
+    <div class="kc-comparison__table">
+      {%- for block in section.blocks -%}
+        <div class="kc-comparison__row" {{ block.shopify_attributes }}>
+          <span class="kc-comparison__check-us">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+          <span class="kc-comparison__feature">{{ block.settings.feature }}</span>
+          <span class="kc-comparison__check-them">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </span>
+        </div>
+      {%- endfor -%}
+    </div>
+
+    <div class="kc-comparison__cta">
+      <a href="#kc-product-form" class="kc-comparison__btn">Try Keraclear Now</a>
+      <p class="kc-comparison__guarantee-text">100% Money Back Guarantee</p>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "KC Comparison",
+  "tag": "section",
+  "class": "kc-comparison-section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature Row",
+      "settings": [
+        {
+          "type": "text",
+          "id": "feature",
+          "label": "Feature",
+          "default": "Deep Nail Penetration"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "KC Comparison",
+      "blocks": [
+        { "type": "feature", "settings": { "feature": "Deep Nail Penetration" } },
+        { "type": "feature", "settings": { "feature": "3rd Party Lab Tested" } },
+        { "type": "feature", "settings": { "feature": "Made In The USA" } },
+        { "type": "feature", "settings": { "feature": "Zero Harsh Chemicals" } },
+        { "type": "feature", "settings": { "feature": "Doctor Formulated" } },
+        { "type": "feature", "settings": { "feature": "Backed By 14,000+ Happy Customers" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

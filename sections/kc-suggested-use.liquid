@@ -1,0 +1,258 @@
+<style>
+  .kc-suggested-use {
+    background-color: var(--kc-white, #FFFFFF);
+    padding: 80px var(--content-padding, 24px);
+  }
+
+  .kc-suggested-use__container {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .kc-suggested-use__heading {
+    font-family: var(--font-heading, 'Playfair Display', serif);
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--kc-text, #1A1A1A);
+    margin: 0 0 48px 0;
+    text-transform: uppercase;
+  }
+
+  .kc-suggested-use__heading em {
+    font-style: normal;
+    color: var(--kc-blue, #2E7D32);
+  }
+
+  .kc-suggested-use__steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+
+  .kc-suggested-use__step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .kc-suggested-use__step-number {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--kc-blue, #2E7D32);
+    color: #FFFFFF;
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 16px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .kc-suggested-use__step-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #FFF8E1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    font-size: 36px;
+    line-height: 1;
+  }
+
+  .kc-suggested-use__step-title {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--kc-text, #1A1A1A);
+    margin: 0 0 8px;
+  }
+
+  .kc-suggested-use__step-text {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--kc-text-secondary, #666666);
+    margin: 0;
+    max-width: 240px;
+  }
+
+  /* CTA */
+  .kc-suggested-use__cta {
+    margin-top: 40px;
+  }
+
+  .kc-suggested-use__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 40px;
+    background: var(--kc-blue, #2E7D32);
+    color: #FFFFFF;
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+
+  .kc-suggested-use__btn:hover {
+    background: var(--kc-blue-hover, #1B5E20);
+    color: #FFFFFF;
+  }
+
+  .kc-suggested-use__guarantee {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 14px;
+    color: var(--kc-text-secondary, #666666);
+    margin-top: 12px;
+  }
+
+  .kc-suggested-use__disclaimer {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--kc-text-secondary, #666666);
+    margin-top: 32px;
+    font-style: italic;
+  }
+
+  @media screen and (max-width: 768px) {
+    .kc-suggested-use {
+      padding: 48px var(--content-padding, 24px);
+    }
+
+    .kc-suggested-use__heading {
+      font-size: 26px;
+      margin-bottom: 32px;
+    }
+
+    .kc-suggested-use__steps {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+
+    .kc-suggested-use__step-text {
+      max-width: 300px;
+    }
+  }
+</style>
+
+<section class="kc-suggested-use" id="suggested-use">
+  <div class="kc-suggested-use__container">
+    <h2 class="kc-suggested-use__heading">{{ section.settings.heading }}</h2>
+
+    <div class="kc-suggested-use__steps">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'step' -%}
+          <div class="kc-suggested-use__step" {{ block.shopify_attributes }}>
+            <span class="kc-suggested-use__step-number">{{ forloop.index }}</span>
+            {%- if block.settings.icon != blank -%}
+              <span class="kc-suggested-use__step-icon">{{ block.settings.icon }}</span>
+            {%- endif -%}
+            <h3 class="kc-suggested-use__step-title">{{ block.settings.title }}</h3>
+            <p class="kc-suggested-use__step-text">{{ block.settings.step_text }}</p>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    <div class="kc-suggested-use__cta">
+      <a href="#kc-product-form" class="kc-suggested-use__btn">Try Keraclear Now</a>
+      <p class="kc-suggested-use__guarantee">100% Money Back Guarantee</p>
+    </div>
+
+    {%- if section.settings.disclaimer != blank -%}
+      <p class="kc-suggested-use__disclaimer">{{ section.settings.disclaimer }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "KC - Suggested Use",
+  "tag": "section",
+  "class": "kc-section-suggested-use",
+  "settings": [
+    {
+      "type": "html",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Clear Nails in <em>3 Simple Steps</em>"
+    },
+    {
+      "type": "textarea",
+      "id": "disclaimer",
+      "label": "Disclaimer Text",
+      "default": "Use only as directed. Consult your healthcare provider before using this product."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon (emoji)",
+          "default": "💧"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Step Title",
+          "default": "Clean & Dry"
+        },
+        {
+          "type": "textarea",
+          "id": "step_text",
+          "label": "Step Instruction",
+          "default": "Clean and dry the affected nail(s) thoroughly before application."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "KC - Suggested Use",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "icon": "🧼",
+            "title": "Clean & Dry",
+            "step_text": "Clean and dry the affected nail(s) thoroughly. This helps the formula absorb properly for maximum effectiveness."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "icon": "💧",
+            "title": "Apply 2-3 Drops",
+            "step_text": "Apply 2-3 drops of Keraclear directly to each affected nail. Gently massage into the nail and surrounding cuticle area."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "icon": "🔄",
+            "title": "Stay Consistent",
+            "step_text": "Use daily for at least 8-12 weeks. Most people see noticeable improvements within the first 4-6 weeks of consistent use."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

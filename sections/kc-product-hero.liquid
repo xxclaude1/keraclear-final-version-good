@@ -1,0 +1,1178 @@
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+
+<style>
+  .kc-product-hero {
+    padding: 40px var(--content-padding, 24px) 60px;
+    background: var(--kc-white, #FFFFFF);
+  }
+
+  .kc-product-hero__inner {
+    max-width: var(--max-width, 1200px);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  /* ── Image Gallery ── */
+  .kc-product-hero__gallery {
+    position: sticky;
+    top: 24px;
+  }
+
+  .kc-product-hero__main-image {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--kc-alt, #F5F5FA);
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .kc-product-hero__main-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  .kc-product-hero__badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: #E53935;
+    color: #FFFFFF;
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 6px 14px;
+    border-radius: 4px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .kc-product-hero__badge::before {
+    content: '🔥';
+    font-size: 14px;
+  }
+
+  .kc-product-hero__thumbnails {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+  }
+
+  .kc-product-hero__thumbnail {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 2px solid var(--kc-border, #E5E5E5);
+    cursor: pointer;
+    background: var(--kc-alt, #F5F5FA);
+    padding: 0;
+    transition: border-color 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .kc-product-hero__thumbnail:hover,
+  .kc-product-hero__thumbnail.is-active {
+    border-color: var(--kc-blue, #2E7D32);
+  }
+
+  .kc-product-hero__thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  /* ── Product Details ── */
+  .kc-product-hero__details {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* ── Star Rating Bar ── */
+  .kc-product-hero__rating-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+    padding: 8px 0;
+  }
+
+  .kc-product-hero__stars-inline {
+    display: flex;
+    gap: 1px;
+  }
+
+  .kc-product-hero__stars-inline svg {
+    width: 20px;
+    height: 20px;
+    fill: #2E7D32;
+  }
+
+  .kc-product-hero__rating-text {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 14px;
+    color: var(--kc-text, #1A1A1A);
+    font-weight: 500;
+  }
+
+  .kc-product-hero__rating-text strong {
+    font-weight: 700;
+  }
+
+  /* ── Title ── */
+  .kc-product-hero__title {
+    font-family: var(--font-heading, 'Playfair Display', serif);
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--kc-text, #1A1A1A);
+    line-height: 1.2;
+    margin: 0 0 20px 0;
+  }
+
+  /* ── Benefit Bullets ── */
+  .kc-product-hero__benefits {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+
+  .kc-product-hero__benefit {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--kc-text, #1A1A1A);
+  }
+
+  .kc-product-hero__benefit-icon {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    line-height: 1;
+  }
+
+  /* ── Price Block ── */
+  .kc-product-hero__price-block {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+
+  .kc-product-hero__compare-price {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 18px;
+    color: #999999;
+    text-decoration: line-through;
+  }
+
+  .kc-product-hero__sale-price {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--kc-text, #1A1A1A);
+  }
+
+  .kc-product-hero__save-badge {
+    background: #2E7D32;
+    color: #FFFFFF;
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 4px;
+  }
+
+  /* ── Urgency ── */
+  .kc-product-hero__urgency {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 14px;
+    color: var(--kc-text, #1A1A1A);
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+
+  .kc-product-hero__urgency strong {
+    color: #E53935;
+  }
+
+  /* ── Variant Cards ── */
+  .kc-product-hero__variants {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .kc-product-hero__variant-card {
+    position: relative;
+    border: 2px solid var(--kc-border, #E5E5E5);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    background: var(--kc-white, #FFFFFF);
+    overflow: hidden;
+  }
+
+  .kc-product-hero__variant-card:hover {
+    border-color: var(--kc-blue, #2E7D32);
+  }
+
+  .kc-product-hero__variant-card.is-selected {
+    border-color: var(--kc-blue, #2E7D32);
+    box-shadow: 0 0 0 1px var(--kc-blue, #2E7D32);
+  }
+
+  .kc-product-hero__variant-card input[type="radio"] {
+    display: none;
+  }
+
+  .kc-product-hero__variant-main {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 20px;
+  }
+
+  .kc-product-hero__variant-radio {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 2px solid var(--kc-border, #E5E5E5);
+    flex-shrink: 0;
+    position: relative;
+    transition: border-color 0.2s ease;
+  }
+
+  .kc-product-hero__variant-card.is-selected .kc-product-hero__variant-radio {
+    border-color: var(--kc-blue, #2E7D32);
+  }
+
+  .kc-product-hero__variant-card.is-selected .kc-product-hero__variant-radio::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--kc-blue, #2E7D32);
+  }
+
+  .kc-product-hero__variant-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .kc-product-hero__variant-title-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 4px;
+  }
+
+  .kc-product-hero__variant-title {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--kc-text, #1A1A1A);
+  }
+
+  .kc-product-hero__variant-save {
+    background: #2E7D32;
+    color: #FFFFFF;
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 3px;
+  }
+
+  .kc-product-hero__variant-subtitle {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 14px;
+    color: var(--kc-text-secondary, #666666);
+    font-style: italic;
+  }
+
+  .kc-product-hero__variant-shipping {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 13px;
+    color: var(--kc-text, #1A1A1A);
+    margin-top: 4px;
+  }
+
+  .kc-product-hero__variant-shipping::before {
+    content: '✔';
+    color: var(--kc-blue, #2E7D32);
+    margin-right: 4px;
+    font-weight: 700;
+  }
+
+  .kc-product-hero__variant-prices {
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .kc-product-hero__variant-price {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--kc-text, #1A1A1A);
+    display: block;
+  }
+
+  .kc-product-hero__variant-compare {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 14px;
+    color: #999999;
+    text-decoration: line-through;
+    display: block;
+  }
+
+  /* Corner badge */
+  .kc-product-hero__variant-corner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 4px 12px;
+    border-radius: 0 6px 0 8px;
+  }
+
+  .kc-product-hero__variant-corner--popular {
+    background: var(--kc-blue, #2E7D32);
+    color: #FFFFFF;
+  }
+
+  .kc-product-hero__variant-corner--best {
+    background: #1A3D1F;
+    color: #FFFFFF;
+  }
+
+  /* Bonus strip below variant */
+  .kc-product-hero__variant-bonuses {
+    background: var(--kc-blue, #2E7D32);
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .kc-product-hero__variant-bonus {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 13px;
+    font-weight: 600;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .kc-product-hero__variant-bonus-icon {
+    font-size: 16px;
+    line-height: 1;
+  }
+
+  /* ── Delivery Estimate ── */
+  .kc-product-hero__delivery {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 14px;
+    color: var(--kc-text, #1A1A1A);
+  }
+
+  .kc-product-hero__delivery-icon {
+    font-size: 18px;
+  }
+
+  .kc-product-hero__delivery-date {
+    background: #E8F5E9;
+    color: #2E7D32;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 13px;
+  }
+
+  /* ── Add to Cart ── */
+  .kc-product-hero__form {
+    margin-bottom: 16px;
+  }
+
+  .kc-product-hero__atc-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 20px 32px;
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    background: #1A1A1A;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+  }
+
+  .kc-product-hero__atc-btn:hover {
+    background: #333333;
+  }
+
+  .kc-product-hero__atc-btn:active {
+    transform: scale(0.98);
+  }
+
+  .kc-product-hero__atc-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .kc-product-hero__atc-btn svg {
+    width: 22px;
+    height: 22px;
+    fill: currentColor;
+  }
+
+  /* ── Payment Icons ── */
+  .kc-product-hero__payment-icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  .kc-product-hero__payment-icon {
+    height: 28px;
+    width: auto;
+    border: 1px solid #E5E5E5;
+    border-radius: 4px;
+    padding: 2px 4px;
+    background: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .kc-product-hero__payment-icon svg {
+    height: 20px;
+    width: auto;
+  }
+
+  /* ── Trust Badges ── */
+  .kc-product-hero__trust-badges {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+
+  .kc-product-hero__trust-badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--kc-text, #1A1A1A);
+  }
+
+  .kc-product-hero__trust-badge-icon {
+    font-size: 20px;
+    line-height: 1;
+  }
+
+  /* ── Inline Review ── */
+  .kc-product-hero__inline-review {
+    background: var(--kc-alt, #F5F5FA);
+    border-radius: 12px;
+    padding: 20px;
+  }
+
+  .kc-product-hero__inline-review-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+  .kc-product-hero__inline-review-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--kc-blue, #2E7D32);
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  .kc-product-hero__inline-review-meta {
+    flex: 1;
+  }
+
+  .kc-product-hero__inline-review-name {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--kc-text, #1A1A1A);
+  }
+
+  .kc-product-hero__inline-review-verified {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 12px;
+    color: var(--kc-blue, #2E7D32);
+    font-weight: 600;
+  }
+
+  .kc-product-hero__inline-review-verified::before {
+    content: '✓ ';
+  }
+
+  .kc-product-hero__inline-review-stars {
+    display: flex;
+    gap: 2px;
+    margin-bottom: 8px;
+  }
+
+  .kc-product-hero__inline-review-stars svg {
+    width: 16px;
+    height: 16px;
+    fill: #2E7D32;
+  }
+
+  .kc-product-hero__inline-review-text {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--kc-text-secondary, #666666);
+    margin: 0;
+  }
+
+  /* ── Accordion Tabs ── */
+  .kc-product-hero__tabs {
+    margin-top: 24px;
+    border-top: 1px solid var(--kc-border, #E5E5E5);
+  }
+
+  .kc-product-hero__tab {
+    border-bottom: 1px solid var(--kc-border, #E5E5E5);
+  }
+
+  .kc-product-hero__tab-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 18px 4px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--kc-text, #1A1A1A);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: left;
+  }
+
+  .kc-product-hero__tab-btn:hover {
+    color: var(--kc-blue, #2E7D32);
+  }
+
+  .kc-product-hero__tab-icon {
+    font-size: 20px;
+    color: var(--kc-text-secondary, #666666);
+    transition: transform 0.3s ease;
+  }
+
+  .kc-product-hero__tab.is-open .kc-product-hero__tab-icon {
+    transform: rotate(180deg);
+  }
+
+  .kc-product-hero__tab-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+  }
+
+  .kc-product-hero__tab-body {
+    padding: 0 4px 20px;
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--kc-text-secondary, #666666);
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 768px) {
+    .kc-product-hero {
+      padding: 16px var(--content-padding, 16px) 40px;
+    }
+
+    .kc-product-hero__inner {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .kc-product-hero__gallery {
+      position: static;
+    }
+
+    .kc-product-hero__title {
+      font-size: 26px;
+    }
+
+    .kc-product-hero__variant-main {
+      padding: 14px 16px;
+      gap: 10px;
+    }
+
+    .kc-product-hero__thumbnail {
+      width: 64px;
+      height: 64px;
+    }
+
+    .kc-product-hero__atc-btn {
+      padding: 18px 24px;
+      font-size: 16px;
+    }
+
+    .kc-product-hero__sale-price {
+      font-size: 26px;
+    }
+
+    .kc-product-hero__variant-price {
+      font-size: 17px;
+    }
+
+    .kc-product-hero__variant-bonuses {
+      padding: 8px 16px;
+    }
+  }
+</style>
+
+<section class="kc-product-hero" data-section-id="{{ section.id }}">
+  <div class="kc-product-hero__inner">
+
+    {%- comment -%} ── LEFT COLUMN: Image Gallery ── {%- endcomment -%}
+    <div class="kc-product-hero__gallery">
+      <div class="kc-product-hero__main-image" id="kc-main-image-wrap">
+        {%- if section.settings.badge_text != blank -%}
+          <span class="kc-product-hero__badge">{{ section.settings.badge_text }}</span>
+        {%- endif -%}
+        {%- if product.featured_image -%}
+          <img
+            id="kc-main-image"
+            src="{{ product.featured_image | image_url: width: 960 }}"
+            alt="{{ product.featured_image.alt | escape }}"
+            width="960"
+            height="{{ 960 | divided_by: product.featured_image.aspect_ratio | round }}"
+            loading="eager"
+          >
+        {%- else -%}
+          {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+        {%- endif -%}
+      </div>
+
+      {%- if product.images.size > 1 -%}
+        <div class="kc-product-hero__thumbnails">
+          {%- for image in product.images -%}
+            <button
+              type="button"
+              class="kc-product-hero__thumbnail{% if forloop.first %} is-active{% endif %}"
+              data-image-src="{{ image | image_url: width: 960 }}"
+              data-image-alt="{{ image.alt | escape }}"
+              aria-label="View image {{ forloop.index }}"
+            >
+              <img
+                src="{{ image | image_url: width: 160 }}"
+                alt="{{ image.alt | escape }}"
+                width="80"
+                height="80"
+                loading="lazy"
+              >
+            </button>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} ── RIGHT COLUMN: Product Details ── {%- endcomment -%}
+    <div class="kc-product-hero__details">
+
+      {%- comment -%} Star Rating Bar {%- endcomment -%}
+      <div class="kc-product-hero__rating-bar">
+        <div class="kc-product-hero__stars-inline" aria-label="4.8 out of 5 stars">
+          {%- for i in (1..5) -%}
+            <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M10 1.3l2.39 5.76 6.11.58-4.65 4.06 1.4 6.0L10 14.26 4.75 17.7l1.4-6.0L1.5 7.64l6.11-.58L10 1.3z"/>
+            </svg>
+          {%- endfor -%}
+        </div>
+        <span class="kc-product-hero__rating-text">
+          <strong>4.8/5</strong> Excellent | Based on <strong>14,576</strong> Reviews
+        </span>
+      </div>
+
+      {%- comment -%} Title {%- endcomment -%}
+      <h1 class="kc-product-hero__title">{{ product.title }}</h1>
+
+      {%- comment -%} Benefit Bullets {%- endcomment -%}
+      <div class="kc-product-hero__benefits">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'benefit' -%}
+            <div class="kc-product-hero__benefit" {{ block.shopify_attributes }}>
+              <span class="kc-product-hero__benefit-icon">{{ block.settings.icon }}</span>
+              <span>{{ block.settings.text }}</span>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      {%- comment -%} Price Block {%- endcomment -%}
+      {%- assign current_variant = product.selected_or_first_available_variant -%}
+      <div class="kc-product-hero__price-block" id="kc-price-block">
+        {%- if current_variant.compare_at_price > current_variant.price -%}
+          <span class="kc-product-hero__compare-price" id="kc-compare-price">{{ current_variant.compare_at_price | money }}</span>
+        {%- endif -%}
+        <span class="kc-product-hero__sale-price" id="kc-sale-price">{{ current_variant.price | money }}</span>
+        {%- if current_variant.compare_at_price > current_variant.price -%}
+          {%- assign save_amount = current_variant.compare_at_price | minus: current_variant.price -%}
+          <span class="kc-product-hero__save-badge" id="kc-save-badge">Save {{ save_amount | money }}</span>
+        {%- endif -%}
+      </div>
+
+      {%- comment -%} Urgency Text {%- endcomment -%}
+      {%- if section.settings.urgency_text != blank -%}
+        <p class="kc-product-hero__urgency">{{ section.settings.urgency_text }}</p>
+      {%- endif -%}
+
+      {%- comment -%} Variant Selector {%- endcomment -%}
+      {%- if product.variants.size > 1 -%}
+        <div class="kc-product-hero__variants" id="kc-variant-selector">
+          {%- for variant in product.variants -%}
+            {%- assign var_save = 0 -%}
+            {%- if variant.compare_at_price > variant.price -%}
+              {%- assign var_save = variant.compare_at_price | minus: variant.price -%}
+            {%- endif -%}
+
+            <label
+              class="kc-product-hero__variant-card{% if variant.id == current_variant.id %} is-selected{% endif %}"
+              data-variant-id="{{ variant.id }}"
+              data-variant-price="{{ variant.price | money }}"
+              data-variant-compare="{{ variant.compare_at_price | money }}"
+              data-variant-save="{{ var_save | money }}"
+              data-variant-available="{{ variant.available }}"
+              for="kc-variant-{{ variant.id }}"
+            >
+              <input
+                type="radio"
+                name="kc-variant-radio"
+                id="kc-variant-{{ variant.id }}"
+                value="{{ variant.id }}"
+                {% if variant.id == current_variant.id %}checked{% endif %}
+              >
+
+              {%- comment -%} Corner badge {%- endcomment -%}
+              {%- if forloop.index == 2 -%}
+                <span class="kc-product-hero__variant-corner kc-product-hero__variant-corner--popular">Most Popular</span>
+              {%- elsif forloop.last and product.variants.size >= 3 -%}
+                <span class="kc-product-hero__variant-corner kc-product-hero__variant-corner--best">Best Deal</span>
+              {%- endif -%}
+
+              <div class="kc-product-hero__variant-main">
+                <span class="kc-product-hero__variant-radio" aria-hidden="true"></span>
+                <div class="kc-product-hero__variant-info">
+                  <div class="kc-product-hero__variant-title-row">
+                    <span class="kc-product-hero__variant-title">{{ variant.title }}</span>
+                    {%- if var_save > 0 -%}
+                      <span class="kc-product-hero__variant-save">Save {{ var_save | money }}</span>
+                    {%- endif -%}
+                  </div>
+                  {%- if variant.metafields.custom.subtitle -%}
+                    <span class="kc-product-hero__variant-subtitle">{{ variant.metafields.custom.subtitle }}</span>
+                  {%- endif -%}
+                  <span class="kc-product-hero__variant-shipping">Includes FREE Shipping</span>
+                </div>
+                <div class="kc-product-hero__variant-prices">
+                  <span class="kc-product-hero__variant-price">{{ variant.price | money }}</span>
+                  {%- if variant.compare_at_price > variant.price -%}
+                    <span class="kc-product-hero__variant-compare">{{ variant.compare_at_price | money }}</span>
+                  {%- endif -%}
+                </div>
+              </div>
+
+              {%- comment -%} Bonus items strip {%- endcomment -%}
+              <div class="kc-product-hero__variant-bonuses">
+                <span class="kc-product-hero__variant-bonus">
+                  <span class="kc-product-hero__variant-bonus-icon">🚚</span>
+                  Free Shipping
+                </span>
+                {%- if forloop.index >= 2 -%}
+                  <span class="kc-product-hero__variant-bonus">
+                    <span class="kc-product-hero__variant-bonus-icon">📋</span>
+                    Free Nail Health Guide
+                  </span>
+                {%- endif -%}
+                {%- if forloop.last and product.variants.size >= 3 -%}
+                  <span class="kc-product-hero__variant-bonus">
+                    <span class="kc-product-hero__variant-bonus-icon">💊</span>
+                    Free Nail Strengthening Tips eBook
+                  </span>
+                {%- endif -%}
+              </div>
+            </label>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      {%- comment -%} Delivery Estimate {%- endcomment -%}
+      <div class="kc-product-hero__delivery">
+        <span class="kc-product-hero__delivery-icon">🚚</span>
+        Delivered on
+        <span class="kc-product-hero__delivery-date" id="kc-delivery-date"></span>
+        with Express Shipping
+      </div>
+
+      {%- comment -%} Add to Cart Form {%- endcomment -%}
+      <form
+        class="kc-product-hero__form"
+        action="/cart/add"
+        method="post"
+        enctype="multipart/form-data"
+        id="kc-product-form"
+      >
+        <input type="hidden" name="id" id="kc-variant-id" value="{{ current_variant.id }}">
+        <input type="hidden" name="quantity" value="1">
+        <button
+          type="submit"
+          class="kc-product-hero__atc-btn"
+          id="kc-atc-btn"
+          {% unless current_variant.available %}disabled{% endunless %}
+        >
+          <span id="kc-atc-text">
+            {%- if current_variant.available -%}
+              ADD TO CART
+            {%- else -%}
+              SOLD OUT
+            {%- endif -%}
+          </span>
+        </button>
+      </form>
+
+      {%- comment -%} Payment Icons {%- endcomment -%}
+      <div class="kc-product-hero__payment-icons">
+        <span class="kc-product-hero__payment-icon">
+          <svg viewBox="0 0 38 24" xmlns="http://www.w3.org/2000/svg"><rect width="38" height="24" rx="3" fill="#1A1F71"/><text x="19" y="15" font-size="8" fill="white" text-anchor="middle" font-weight="bold" font-family="Arial">VISA</text></svg>
+        </span>
+        <span class="kc-product-hero__payment-icon">
+          <svg viewBox="0 0 38 24" xmlns="http://www.w3.org/2000/svg"><rect width="38" height="24" rx="3" fill="#F5F5F5"/><circle cx="15" cy="12" r="7" fill="#EB001B"/><circle cx="23" cy="12" r="7" fill="#F79E1B"/></svg>
+        </span>
+        <span class="kc-product-hero__payment-icon">
+          <svg viewBox="0 0 38 24" xmlns="http://www.w3.org/2000/svg"><rect width="38" height="24" rx="3" fill="#2557D6"/><text x="19" y="15" font-size="7" fill="white" text-anchor="middle" font-weight="bold" font-family="Arial">AMEX</text></svg>
+        </span>
+        <span class="kc-product-hero__payment-icon">
+          <svg viewBox="0 0 38 24" xmlns="http://www.w3.org/2000/svg"><rect width="38" height="24" rx="3" fill="#003087"/><text x="19" y="15" font-size="7" fill="white" text-anchor="middle" font-weight="bold" font-family="Arial">PayPal</text></svg>
+        </span>
+        <span class="kc-product-hero__payment-icon">
+          <svg viewBox="0 0 38 24" xmlns="http://www.w3.org/2000/svg"><rect width="38" height="24" rx="3" fill="#000000"/><text x="19" y="15" font-size="7" fill="white" text-anchor="middle" font-weight="bold" font-family="Arial">Pay</text></svg>
+        </span>
+        <span class="kc-product-hero__payment-icon">
+          <svg viewBox="0 0 38 24" xmlns="http://www.w3.org/2000/svg"><rect width="38" height="24" rx="3" fill="#5A31F4"/><text x="19" y="15" font-size="7" fill="white" text-anchor="middle" font-weight="bold" font-family="Arial">Shop</text></svg>
+        </span>
+      </div>
+
+      {%- comment -%} Trust Badges {%- endcomment -%}
+      <div class="kc-product-hero__trust-badges">
+        <div class="kc-product-hero__trust-badge">
+          <span class="kc-product-hero__trust-badge-icon">🛡️</span>
+          90-Day Money-Back Guarantee
+        </div>
+        <div class="kc-product-hero__trust-badge">
+          <span class="kc-product-hero__trust-badge-icon">🇺🇸</span>
+          Free Shipping From USA Included
+        </div>
+      </div>
+
+      {%- comment -%} Inline Review {%- endcomment -%}
+      <div class="kc-product-hero__inline-review">
+        <div class="kc-product-hero__inline-review-header">
+          <div class="kc-product-hero__inline-review-avatar">
+            {{ section.settings.review_name | slice: 0, 1 | upcase }}
+          </div>
+          <div class="kc-product-hero__inline-review-meta">
+            <div class="kc-product-hero__inline-review-name">- {{ section.settings.review_name }}</div>
+            <div class="kc-product-hero__inline-review-verified">Verified Customer</div>
+          </div>
+        </div>
+        <div class="kc-product-hero__inline-review-stars">
+          {%- for i in (1..5) -%}
+            <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M10 1.3l2.39 5.76 6.11.58-4.65 4.06 1.4 6.0L10 14.26 4.75 17.7l1.4-6.0L1.5 7.64l6.11-.58L10 1.3z"/>
+            </svg>
+          {%- endfor -%}
+        </div>
+        <p class="kc-product-hero__inline-review-text">{{ section.settings.review_text }}</p>
+      </div>
+
+      {%- comment -%} Accordion Tabs {%- endcomment -%}
+      <div class="kc-product-hero__tabs">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'tab' -%}
+            <div class="kc-product-hero__tab" {{ block.shopify_attributes }}>
+              <button class="kc-product-hero__tab-btn" aria-expanded="false">
+                <span>{{ block.settings.title }}</span>
+                <span class="kc-product-hero__tab-icon">&#8250;</span>
+              </button>
+              <div class="kc-product-hero__tab-content">
+                <div class="kc-product-hero__tab-body">{{ block.settings.content }}</div>
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  (function() {
+    var section = document.querySelector('[data-section-id="{{ section.id }}"]');
+    if (!section) return;
+
+    var variantCards = section.querySelectorAll('.kc-product-hero__variant-card');
+    var variantIdInput = document.getElementById('kc-variant-id');
+    var atcBtn = document.getElementById('kc-atc-btn');
+    var atcText = document.getElementById('kc-atc-text');
+    var mainImage = document.getElementById('kc-main-image');
+    var thumbnails = section.querySelectorAll('.kc-product-hero__thumbnail');
+    var salePrice = document.getElementById('kc-sale-price');
+    var comparePrice = document.getElementById('kc-compare-price');
+    var saveBadge = document.getElementById('kc-save-badge');
+
+    /* ── Delivery date calc ── */
+    var deliveryEl = document.getElementById('kc-delivery-date');
+    if (deliveryEl) {
+      var d = new Date();
+      d.setDate(d.getDate() + 3);
+      var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+      var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+      deliveryEl.textContent = days[d.getDay()] + ', ' + d.getDate() + ' ' + months[d.getMonth()];
+    }
+
+    /* ── Variant selection ── */
+    variantCards.forEach(function(card) {
+      card.addEventListener('click', function() {
+        var variantId = this.getAttribute('data-variant-id');
+        var variantPrice = this.getAttribute('data-variant-price');
+        var variantCompare = this.getAttribute('data-variant-compare');
+        var variantSave = this.getAttribute('data-variant-save');
+        var variantAvailable = this.getAttribute('data-variant-available') === 'true';
+        var radio = this.querySelector('input[type="radio"]');
+
+        radio.checked = true;
+
+        variantCards.forEach(function(c) { c.classList.remove('is-selected'); });
+        this.classList.add('is-selected');
+
+        if (variantIdInput) variantIdInput.value = variantId;
+
+        /* Update price display */
+        if (salePrice) salePrice.textContent = variantPrice;
+        if (comparePrice) {
+          if (variantCompare && variantCompare !== variantPrice) {
+            comparePrice.textContent = variantCompare;
+            comparePrice.style.display = '';
+          } else {
+            comparePrice.style.display = 'none';
+          }
+        }
+        if (saveBadge) {
+          if (variantSave && variantSave !== '$0.00') {
+            saveBadge.textContent = 'Save ' + variantSave;
+            saveBadge.style.display = '';
+          } else {
+            saveBadge.style.display = 'none';
+          }
+        }
+
+        if (atcBtn && atcText) {
+          if (variantAvailable) {
+            atcBtn.disabled = false;
+            atcText.textContent = 'ADD TO CART';
+          } else {
+            atcBtn.disabled = true;
+            atcText.textContent = 'SOLD OUT';
+          }
+        }
+
+        if (window.history && window.history.replaceState) {
+          var url = new URL(window.location.href);
+          url.searchParams.set('variant', variantId);
+          window.history.replaceState({}, '', url.toString());
+        }
+      });
+    });
+
+    /* ── Thumbnail gallery ── */
+    thumbnails.forEach(function(thumb) {
+      thumb.addEventListener('click', function() {
+        var newSrc = this.getAttribute('data-image-src');
+        var newAlt = this.getAttribute('data-image-alt');
+        if (mainImage && newSrc) {
+          mainImage.src = newSrc;
+          if (newAlt) mainImage.alt = newAlt;
+        }
+        thumbnails.forEach(function(t) { t.classList.remove('is-active'); });
+        this.classList.add('is-active');
+      });
+    });
+
+    /* ── Accordion Tabs ── */
+    var tabs = section.querySelectorAll('.kc-product-hero__tab');
+    tabs.forEach(function(tab) {
+      var btn = tab.querySelector('.kc-product-hero__tab-btn');
+      var content = tab.querySelector('.kc-product-hero__tab-content');
+      btn.addEventListener('click', function() {
+        var isOpen = tab.classList.contains('is-open');
+        tabs.forEach(function(t) {
+          t.classList.remove('is-open');
+          t.querySelector('.kc-product-hero__tab-btn').setAttribute('aria-expanded', 'false');
+          t.querySelector('.kc-product-hero__tab-content').style.maxHeight = null;
+        });
+        if (!isOpen) {
+          tab.classList.add('is-open');
+          btn.setAttribute('aria-expanded', 'true');
+          content.style.maxHeight = content.scrollHeight + 'px';
+        }
+      });
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "KC Product Hero",
+  "tag": "section",
+  "class": "kc-product-hero-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge Text (top-left of image)",
+      "default": "SELLING FAST"
+    },
+    {
+      "type": "text",
+      "id": "urgency_text",
+      "label": "Urgency Text",
+      "default": "*327 customers have claimed this offer in the last 24 hours"
+    },
+    {
+      "type": "text",
+      "id": "review_name",
+      "label": "Inline Review — Name",
+      "default": "R. Mitchell, FL, US"
+    },
+    {
+      "type": "textarea",
+      "id": "review_text",
+      "label": "Inline Review — Text",
+      "default": "I've tried everything for my nail fungus — creams, pills, vinegar soaks. After 6 weeks of Keraclear, I could see new clear nail growth. Month 3 now and my nails look better than they have in years. The oil absorbs so quickly too."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit Bullet",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon (emoji)",
+          "default": "🔬"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Benefit Text",
+          "default": "Join thousands who say — it WORKS!"
+        }
+      ]
+    },
+    {
+      "type": "tab",
+      "name": "Accordion Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Tab Title",
+          "default": "DESCRIPTION"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Tab Content"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "KC Product Hero"
+    }
+  ],
+  "templates": [
+    "product"
+  ]
+}
+{% endschema %}

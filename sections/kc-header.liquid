@@ -1,0 +1,317 @@
+<style>
+  /* --- Header --- */
+  .kc-header {
+    background-color: var(--kc-white);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid var(--kc-border);
+  }
+
+  /* Top bar */
+  .kc-header__top {
+    border-bottom: 1px solid var(--kc-border);
+    padding: 8px 0;
+  }
+
+  .kc-header__top-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .kc-header__logo-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--kc-text);
+    font-family: var(--font-heading);
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+
+  .kc-header__logo-link:hover {
+    color: var(--kc-text);
+  }
+
+  .kc-header__logo-img {
+    height: 40px;
+    width: auto;
+  }
+
+  .kc-header__top-right {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .kc-header__phone {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--kc-text);
+    font-weight: 600;
+  }
+
+  .kc-header__phone:hover {
+    color: var(--kc-blue);
+  }
+
+  .kc-header__phone svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .kc-header__help-link {
+    color: var(--kc-text-secondary);
+    font-weight: 500;
+  }
+
+  .kc-header__help-link:hover {
+    color: var(--kc-blue);
+  }
+
+  /* Nav bar */
+  .kc-header__nav {
+    padding: 12px 0;
+  }
+
+  .kc-header__nav-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .kc-header__nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .kc-header__nav-link {
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--kc-text);
+    padding: 4px 0;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease;
+  }
+
+  .kc-header__nav-link:hover {
+    color: var(--kc-blue);
+    border-bottom-color: var(--kc-blue);
+  }
+
+  .kc-header__nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .kc-header__action {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--kc-text-secondary);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 4px;
+    transition: color 0.2s ease;
+  }
+
+  .kc-header__action:hover {
+    color: var(--kc-blue);
+  }
+
+  .kc-header__action svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .kc-header__cart-count {
+    background-color: var(--kc-blue);
+    color: var(--kc-white);
+    font-size: 11px;
+    font-weight: 700;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: -4px;
+  }
+
+  /* Mobile */
+  .kc-header__mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    color: var(--kc-text);
+  }
+
+  .kc-header__mobile-toggle svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .kc-header__mobile-nav {
+    display: none;
+    padding: 16px var(--content-padding) 24px;
+    border-top: 1px solid var(--kc-border);
+    background: var(--kc-white);
+  }
+
+  .kc-header__mobile-nav.is-open {
+    display: block;
+  }
+
+  .kc-header__mobile-link {
+    display: block;
+    padding: 14px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--kc-text);
+    border-bottom: 1px solid var(--kc-border);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .kc-header__mobile-link:last-child {
+    border-bottom: none;
+  }
+
+  .kc-header__mobile-link:hover {
+    color: var(--kc-blue);
+  }
+
+  @media screen and (max-width: 749px) {
+    .kc-header__nav-links {
+      display: none;
+    }
+
+    .kc-header__mobile-toggle {
+      display: block;
+    }
+
+    .kc-header__top-right {
+      gap: 16px;
+    }
+
+    .kc-header__help-link {
+      display: none;
+    }
+
+    .kc-header__logo-link {
+      font-size: 20px;
+    }
+  }
+</style>
+
+<header class="kc-header" data-section-id="{{ section.id }}">
+  <!-- Top bar: Logo + Phone/Help -->
+  <div class="kc-header__top">
+    <div class="kc-header__top-inner">
+      <a href="/" class="kc-header__logo-link" aria-label="{{ shop.name }} - Home">
+        {%- if section.settings.logo != blank -%}
+          <img
+            src="{{ section.settings.logo | image_url: width: 200 }}"
+            alt="{{ shop.name }}"
+            class="kc-header__logo-img"
+            width="200"
+            height="40"
+            loading="eager"
+          >
+        {%- else -%}
+          KERACLEAR
+        {%- endif -%}
+      </a>
+
+      <div class="kc-header__top-right">
+        {%- if section.settings.phone_number != blank -%}
+          <a href="tel:{{ section.settings.phone_number | remove: ' ' | remove: '-' | remove: '(' | remove: ')' }}" class="kc-header__phone">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+            ORDER: {{ section.settings.phone_number }}
+          </a>
+        {%- endif -%}
+        <a href="/pages/contact" class="kc-header__help-link">CONTACT US</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Nav bar: Links + Cart -->
+  <div class="kc-header__nav">
+    <div class="kc-header__nav-inner">
+      <!-- Mobile menu toggle -->
+      <button class="kc-header__mobile-toggle" aria-label="Menu" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'false' ? 'true' : 'false'); this.closest('.kc-header').querySelector('.kc-header__mobile-nav').classList.toggle('is-open')">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+
+      <!-- Desktop nav links -->
+      <nav class="kc-header__nav-links" aria-label="Main navigation">
+        <a href="/products/keraclear-antifungal-nail-serum" class="kc-header__nav-link">Shop</a>
+        <a href="/pages/about" class="kc-header__nav-link">About</a>
+        <a href="/products/keraclear-antifungal-nail-serum" class="kc-header__nav-link">Subscribe & Save</a>
+      </nav>
+
+      <!-- Actions: Cart -->
+      <div class="kc-header__nav-actions">
+        <a href="/account/login" class="kc-header__action" aria-label="Log in">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span>Log In</span>
+        </a>
+        <a href="/cart" class="kc-header__action" aria-label="Cart ({{ cart.item_count }} items)">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+          {%- if cart.item_count > 0 -%}
+            <span class="kc-header__cart-count">{{ cart.item_count }}</span>
+          {%- endif -%}
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile nav dropdown -->
+  <nav class="kc-header__mobile-nav" aria-label="Mobile navigation">
+    <a href="/products/keraclear-antifungal-nail-serum" class="kc-header__mobile-link">Shop</a>
+    <a href="/pages/about" class="kc-header__mobile-link">About</a>
+    <a href="/products/keraclear-antifungal-nail-serum" class="kc-header__mobile-link">Subscribe & Save</a>
+    <a href="/account/login" class="kc-header__mobile-link">Log In</a>
+    <a href="/pages/contact" class="kc-header__mobile-link">Contact Us</a>
+  </nav>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "class": "kc-header-section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "text",
+      "id": "phone_number",
+      "label": "Phone number",
+      "default": "1-800-555-0199"
+    }
+  ]
+}
+{% endschema %}

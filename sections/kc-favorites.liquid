@@ -1,0 +1,388 @@
+<style>
+  .kc-favorites {
+    background-color: var(--kc-alt);
+    padding: 80px 0;
+  }
+
+  .kc-favorites__inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+  }
+
+  .kc-favorites__heading {
+    font-family: var(--font-heading);
+    font-size: 36px;
+    font-weight: 600;
+    color: var(--kc-text);
+    text-align: center;
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .kc-favorites__subheading {
+    font-family: var(--font-body);
+    font-size: 18px;
+    color: var(--kc-text-secondary);
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .kc-favorites__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+
+  .kc-favorites__card {
+    background-color: var(--kc-white);
+    border: 1px solid var(--kc-border);
+    border-radius: var(--card-radius);
+    padding: 28px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .kc-favorites__card--featured {
+    border-color: var(--kc-blue);
+    border-width: 2px;
+  }
+
+  .kc-favorites__badge {
+    display: inline-block;
+    padding: 5px 16px;
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--kc-blue);
+    background-color: var(--kc-badge-bg);
+    border-radius: 20px;
+    margin-bottom: 16px;
+  }
+
+  .kc-favorites__spacer {
+    height: 29px;
+    margin-bottom: 16px;
+  }
+
+  .kc-favorites__title {
+    font-family: var(--font-body);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--kc-text);
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+
+  .kc-favorites__supply {
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: var(--kc-text-secondary);
+    margin-bottom: 16px;
+  }
+
+  .kc-favorites__stars {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+
+  .kc-favorites__stars svg {
+    width: 18px;
+    height: 18px;
+    fill: var(--kc-star);
+    flex-shrink: 0;
+  }
+
+  .kc-favorites__review-count {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--kc-text-secondary);
+  }
+
+  .kc-favorites__price-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+
+  .kc-favorites__price {
+    font-family: var(--font-body);
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--kc-blue);
+  }
+
+  .kc-favorites__compare-price {
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: var(--kc-text-secondary);
+    text-decoration: line-through;
+  }
+
+  .kc-favorites__shipping {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--kc-blue);
+    margin-bottom: 20px;
+    min-height: 20px;
+  }
+
+  .kc-favorites__shipping--hidden {
+    visibility: hidden;
+  }
+
+  .kc-favorites__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 48px;
+    padding: 14px 24px;
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--kc-white);
+    background-color: var(--kc-blue);
+    border: none;
+    border-radius: var(--btn-radius);
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+    margin-top: auto;
+  }
+
+  .kc-favorites__btn:hover {
+    background-color: var(--kc-blue-hover);
+  }
+
+  .kc-favorites__footer {
+    text-align: center;
+  }
+
+  .kc-favorites__footer-link {
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--kc-blue);
+    text-decoration: none;
+    letter-spacing: 0.3px;
+    transition: color 0.2s ease;
+  }
+
+  .kc-favorites__footer-link:hover {
+    color: var(--kc-blue-hover);
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    .kc-favorites {
+      padding: 48px 0;
+    }
+
+    .kc-favorites__heading {
+      font-size: 26px;
+    }
+
+    .kc-favorites__subheading {
+      font-size: 16px;
+      margin-bottom: 32px;
+    }
+
+    .kc-favorites__grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 32px;
+    }
+  }
+</style>
+
+<section class="kc-favorites" id="favorites">
+  <div class="kc-favorites__inner">
+    <h2 class="kc-favorites__heading">{{ section.settings.heading }}</h2>
+    <p class="kc-favorites__subheading">{{ section.settings.subheading }}</p>
+
+    <div class="kc-favorites__grid">
+      {%- for block in section.blocks -%}
+        <div class="kc-favorites__card{% if block.settings.badge != blank %} kc-favorites__card--featured{% endif %}" {{ block.shopify_attributes }}>
+          {%- if block.settings.badge != blank -%}
+            <span class="kc-favorites__badge">{{ block.settings.badge }}</span>
+          {%- else -%}
+            <div class="kc-favorites__spacer"></div>
+          {%- endif -%}
+
+          <h3 class="kc-favorites__title">{{ block.settings.title }}</h3>
+          <p class="kc-favorites__supply">{{ block.settings.description }}</p>
+
+          <div class="kc-favorites__stars">
+            {%- for i in (1..5) -%}
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            {%- endfor -%}
+            <span class="kc-favorites__review-count">{{ block.settings.review_count }} Reviews</span>
+          </div>
+
+          <div class="kc-favorites__price-row">
+            <span class="kc-favorites__price">${{ block.settings.price }}</span>
+            {%- if block.settings.compare_price != blank -%}
+              <span class="kc-favorites__compare-price">${{ block.settings.compare_price }}</span>
+            {%- endif -%}
+          </div>
+
+          {%- if block.settings.free_shipping -%}
+            <p class="kc-favorites__shipping">Free Shipping</p>
+          {%- else -%}
+            <p class="kc-favorites__shipping kc-favorites__shipping--hidden">Free Shipping</p>
+          {%- endif -%}
+
+          <a href="{{ block.settings.button_link }}" class="kc-favorites__btn">Shop Now</a>
+        </div>
+      {%- endfor -%}
+    </div>
+
+    {%- if section.settings.footer_link != blank -%}
+      <div class="kc-favorites__footer">
+        <a href="{{ section.settings.footer_link }}" class="kc-favorites__footer-link">SHOP ALL FAVORITES &rarr;</a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Customer Favorites",
+  "tag": "section",
+  "class": "kc-favorites-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Customer Favorites"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "The packages our customers love most"
+    },
+    {
+      "type": "url",
+      "id": "footer_link",
+      "label": "Footer link URL"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_card",
+      "name": "Product Card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Product title",
+          "default": "Keraclear — 3 Bottles"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Supply description",
+          "default": "90-day supply"
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "Badge text (leave blank for none)"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Sale price (number only)",
+          "default": "207"
+        },
+        {
+          "type": "text",
+          "id": "compare_price",
+          "label": "Compare-at price (number only)",
+          "default": "537"
+        },
+        {
+          "type": "text",
+          "id": "review_count",
+          "label": "Review count",
+          "default": "14,576"
+        },
+        {
+          "type": "checkbox",
+          "id": "free_shipping",
+          "label": "Show free shipping?",
+          "default": true
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Customer Favorites",
+      "blocks": [
+        {
+          "type": "product_card",
+          "settings": {
+            "title": "Keraclear — 2 Bottles",
+            "description": "60-day supply",
+            "badge": "",
+            "price": "158",
+            "compare_price": "358",
+            "review_count": "14,576",
+            "free_shipping": false
+          }
+        },
+        {
+          "type": "product_card",
+          "settings": {
+            "title": "Keraclear — 3 Bottles",
+            "description": "90-day supply",
+            "badge": "BEST SELLER",
+            "price": "207",
+            "compare_price": "537",
+            "review_count": "14,576",
+            "free_shipping": true
+          }
+        },
+        {
+          "type": "product_card",
+          "settings": {
+            "title": "Keraclear — 6 Bottles",
+            "description": "180-day supply",
+            "badge": "BEST VALUE",
+            "price": "294",
+            "compare_price": "1,074",
+            "review_count": "14,576",
+            "free_shipping": true
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

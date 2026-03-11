@@ -1,0 +1,24 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "Header",
+  "type": "header",
+  "sections": {
+    "kc-header": {
+      "type": "kc-header",
+      "settings": {
+        "phone_number": "1-800-555-0199"
+      }
+    }
+  },
+  "order": [
+    "kc-header"
+  ]
+}

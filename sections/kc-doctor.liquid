@@ -1,0 +1,352 @@
+<style>
+  .kc-doctor {
+    background-color: var(--kc-white);
+    padding: 80px 0;
+    overflow: hidden;
+  }
+
+  .kc-doctor__inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+  }
+
+  .kc-doctor__layout {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 48px;
+    align-items: center;
+    min-height: 560px;
+  }
+
+  /* Left column: bio card */
+  .kc-doctor__left {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    z-index: 2;
+  }
+
+  /* Floating cards */
+  .kc-doctor__card {
+    background-color: var(--kc-white);
+    border-radius: var(--card-radius);
+    padding: 28px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .kc-doctor__card-eyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--kc-blue);
+    margin-bottom: 12px;
+  }
+
+  .kc-doctor__card-heading {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--kc-text);
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  .kc-doctor__card-quote {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 17px;
+    color: var(--kc-text-secondary);
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+
+  .kc-doctor__card-text {
+    font-size: 16px;
+    color: var(--kc-text-secondary);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .kc-doctor__card-link {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--kc-blue);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .kc-doctor__card-link:hover {
+    color: var(--kc-blue-hover);
+  }
+
+  /* Right column: photo + overlapping cards */
+  .kc-doctor__right {
+    position: relative;
+    z-index: 1;
+  }
+
+  .kc-doctor__photo-wrapper {
+    position: relative;
+  }
+
+  .kc-doctor__photo {
+    width: 100%;
+    max-width: 480px;
+    border-radius: var(--card-radius);
+    display: block;
+    margin: 0 auto;
+  }
+
+  .kc-doctor__photo-placeholder {
+    width: 100%;
+    max-width: 480px;
+    aspect-ratio: 3 / 4;
+    background-color: var(--kc-alt);
+    border-radius: var(--card-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--kc-text-secondary);
+    font-size: 16px;
+    margin: 0 auto;
+  }
+
+  /* Floating cards on right side */
+  .kc-doctor__floating-cards {
+    position: absolute;
+    right: -20px;
+    top: 40px;
+    bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 16px;
+    width: 280px;
+    z-index: 3;
+  }
+
+  .kc-doctor__floating-card {
+    background-color: var(--kc-white);
+    border-radius: var(--card-radius);
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .kc-doctor__floating-card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--kc-text);
+    margin-bottom: 8px;
+  }
+
+  .kc-doctor__floating-card-text {
+    font-size: 14px;
+    color: var(--kc-text-secondary);
+    line-height: 1.5;
+  }
+
+  .kc-doctor__floating-card-link {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--kc-blue);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* Credential items */
+  .kc-doctor__credential {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: var(--kc-text-secondary);
+    line-height: 1.4;
+  }
+
+  .kc-doctor__credential svg {
+    width: 14px;
+    height: 14px;
+    color: var(--kc-blue);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  @media screen and (max-width: 989px) {
+    .kc-doctor__layout {
+      grid-template-columns: 1fr;
+      min-height: auto;
+    }
+
+    .kc-doctor__floating-cards {
+      position: relative;
+      right: auto;
+      top: auto;
+      bottom: auto;
+      width: 100%;
+      flex-direction: row;
+      margin-top: 24px;
+    }
+
+    .kc-doctor__floating-card {
+      flex: 1;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .kc-doctor {
+      padding: 48px 0;
+    }
+
+    .kc-doctor__card-heading {
+      font-size: 24px;
+    }
+
+    .kc-doctor__floating-cards {
+      flex-direction: column;
+    }
+
+    .kc-doctor__photo-wrapper {
+      max-width: 360px;
+      margin: 0 auto;
+    }
+  }
+</style>
+
+<section class="kc-doctor" data-section-id="{{ section.id }}">
+  <div class="kc-doctor__inner">
+    <div class="kc-doctor__layout">
+      <!-- Left: Bio card -->
+      <div class="kc-doctor__left">
+        <div class="kc-doctor__card">
+          <p class="kc-doctor__card-eyebrow">{{ section.settings.eyebrow }}</p>
+          <h2 class="kc-doctor__card-heading">{{ section.settings.name }}</h2>
+          {%- if section.settings.quote != blank -%}
+            <p class="kc-doctor__card-quote">"{{ section.settings.quote }}"</p>
+          {%- endif -%}
+          <p class="kc-doctor__card-text">{{ section.settings.bio }}</p>
+          <a href="{{ section.settings.link_url }}" class="kc-doctor__card-link">Learn More &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Right: Photo + floating cards -->
+      <div class="kc-doctor__right">
+        <div class="kc-doctor__photo-wrapper">
+          {%- if section.settings.photo != blank -%}
+            <img
+              src="{{ section.settings.photo | image_url: width: 960 }}"
+              alt="{{ section.settings.name }}"
+              class="kc-doctor__photo"
+              width="480"
+              height="640"
+              loading="lazy"
+            >
+          {%- else -%}
+            <div class="kc-doctor__photo-placeholder">
+              Dr. Landford photo<br>Upload in theme editor
+            </div>
+          {%- endif -%}
+        </div>
+
+        <div class="kc-doctor__floating-cards">
+          <!-- Philosophy card -->
+          <div class="kc-doctor__floating-card">
+            <h4 class="kc-doctor__floating-card-title">{{ section.settings.philosophy_title }}</h4>
+            <p class="kc-doctor__floating-card-text">{{ section.settings.philosophy_text }}</p>
+          </div>
+
+          <!-- Credentials card -->
+          <div class="kc-doctor__floating-card">
+            <h4 class="kc-doctor__floating-card-title">{{ section.settings.credentials_title }}</h4>
+            <div>
+              {%- assign creds = section.settings.credentials | split: '|' -%}
+              {%- for cred in creds -%}
+                <div class="kc-doctor__credential">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>{{ cred | strip }}</span>
+                </div>
+              {%- endfor -%}
+            </div>
+            <a href="{{ section.settings.link_url }}" class="kc-doctor__floating-card-link">Learn More &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Doctor Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Meet the Doctor"
+    },
+    {
+      "type": "text",
+      "id": "name",
+      "label": "Doctor name",
+      "default": "Dr. Landford"
+    },
+    {
+      "type": "textarea",
+      "id": "quote",
+      "label": "Quote",
+      "default": "I've spent 25 years studying nail health. Keraclear represents everything I've learned about fighting fungal infections — naturally and effectively."
+    },
+    {
+      "type": "textarea",
+      "id": "bio",
+      "label": "Bio paragraph",
+      "default": "A board-certified dermatologist with over 25 years of clinical experience, Dr. Landford developed Keraclear after seeing countless patients struggle with ineffective nail fungus treatments. His mission: create a natural, science-backed formula that actually works."
+    },
+    {
+      "type": "image_picker",
+      "id": "photo",
+      "label": "Doctor photo"
+    },
+    {
+      "type": "text",
+      "id": "philosophy_title",
+      "label": "Philosophy card title",
+      "default": "His Approach"
+    },
+    {
+      "type": "textarea",
+      "id": "philosophy_text",
+      "label": "Philosophy card text",
+      "default": "Dr. Landford believes in treating the root cause, not just the symptoms. His approach combines the best of natural medicine with clinical dermatology."
+    },
+    {
+      "type": "text",
+      "id": "credentials_title",
+      "label": "Credentials card title",
+      "default": "Credentials"
+    },
+    {
+      "type": "textarea",
+      "id": "credentials",
+      "label": "Credentials (separate with |)",
+      "default": "Board-Certified Dermatologist|25+ Years Clinical Experience|Fellowship-Trained in Nail Disorders|Published Researcher|Member, American Academy of Dermatology"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Learn more link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Doctor Section"
+    }
+  ]
+}
+{% endschema %}

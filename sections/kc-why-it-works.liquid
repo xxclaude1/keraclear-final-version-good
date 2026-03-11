@@ -1,0 +1,323 @@
+{{ 'section-kc-why-it-works' | append: section.id }}
+
+<style>
+  #kc-why-it-works-{{ section.id }} {
+    background: var(--kc-white, #FFFFFF);
+    padding: 80px var(--content-padding, 24px);
+  }
+
+  #kc-why-it-works-{{ section.id }} .wiw-container {
+    max-width: var(--max-width, 1200px);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  #kc-why-it-works-{{ section.id }} .wiw-heading {
+    font-family: var(--font-heading, 'Playfair Display', serif);
+    font-size: 36px;
+    line-height: 1.2;
+    color: var(--kc-text, #1A1A1A);
+    margin: 0 0 16px 0;
+    font-weight: 700;
+  }
+
+  #kc-why-it-works-{{ section.id }} .wiw-intro {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--kc-text-secondary, #666666);
+    margin: 0 0 36px 0;
+  }
+
+  #kc-why-it-works-{{ section.id }} .wiw-benefits {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  #kc-why-it-works-{{ section.id }} .wiw-benefit {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  #kc-why-it-works-{{ section.id }} .wiw-benefit-icon {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--kc-blue, #2E7D32);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #kc-why-it-works-{{ section.id }} .wiw-benefit-icon svg {
+    width: 28px;
+    height: 28px;
+    fill: none;
+    stroke: #FFFFFF;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  #kc-why-it-works-{{ section.id }} .wiw-benefit-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  #kc-why-it-works-{{ section.id }} .wiw-benefit-title {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--kc-text, #1A1A1A);
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  #kc-why-it-works-{{ section.id }} .wiw-benefit-desc {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--kc-text-secondary, #666666);
+    margin: 0;
+  }
+
+  #kc-why-it-works-{{ section.id }} .wiw-image-wrap {
+    width: 100%;
+    border-radius: var(--card-radius, 12px);
+    overflow: hidden;
+    position: relative;
+  }
+
+  #kc-why-it-works-{{ section.id }} .wiw-image-wrap img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  #kc-why-it-works-{{ section.id }} .wiw-image-placeholder {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    background: var(--kc-alt, #F5F5FA);
+    border: 2px dashed var(--kc-border, #E5E5E5);
+    border-radius: var(--card-radius, 12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  #kc-why-it-works-{{ section.id }} .wiw-image-placeholder svg {
+    width: 48px;
+    height: 48px;
+    stroke: var(--kc-border, #E5E5E5);
+    fill: none;
+    stroke-width: 1.5;
+  }
+
+  #kc-why-it-works-{{ section.id }} .wiw-image-placeholder span {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 14px;
+    color: var(--kc-text-secondary, #666666);
+  }
+
+  @media (max-width: 768px) {
+    #kc-why-it-works-{{ section.id }} {
+      padding: 48px var(--content-padding, 24px);
+    }
+
+    #kc-why-it-works-{{ section.id }} .wiw-container {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    #kc-why-it-works-{{ section.id }} .wiw-heading {
+      font-size: 26px;
+    }
+
+    #kc-why-it-works-{{ section.id }} .wiw-intro {
+      font-size: 16px;
+      margin-bottom: 28px;
+    }
+
+    #kc-why-it-works-{{ section.id }} .wiw-image-wrap {
+      order: -1;
+    }
+  }
+</style>
+
+<section id="kc-why-it-works-{{ section.id }}">
+  <div class="wiw-container">
+    <div class="wiw-text">
+      <h2 class="wiw-heading">{{ section.settings.heading }}</h2>
+
+      {%- if section.settings.intro_text != blank -%}
+        <p class="wiw-intro">{{ section.settings.intro_text }}</p>
+      {%- endif -%}
+
+      <div class="wiw-benefits">
+        {%- for block in section.blocks -%}
+          <div class="wiw-benefit" {{ block.shopify_attributes }}>
+            <div class="wiw-benefit-icon">
+              {%- case block.settings.icon -%}
+                {%- when 'penetration' -%}
+                  <svg viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 3v22"/>
+                    <path d="M8 9l6-6 6 6"/>
+                    <path d="M6 18h16"/>
+                    <path d="M4 22h20"/>
+                  </svg>
+                {%- when 'target' -%}
+                  <svg viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="14" cy="14" r="10"/>
+                    <circle cx="14" cy="14" r="6"/>
+                    <circle cx="14" cy="14" r="2"/>
+                  </svg>
+                {%- when 'shield' -%}
+                  <svg viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 3L4 7v6c0 5.55 4.27 10.74 10 12 5.73-1.26 10-6.45 10-12V7L14 3z"/>
+                    <path d="M10 14l3 3 5-6"/>
+                  </svg>
+                {%- when 'droplet' -%}
+                  <svg viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 3C14 3 6 12.5 6 17a8 8 0 0016 0C22 12.5 14 3 14 3z"/>
+                  </svg>
+              {%- endcase -%}
+            </div>
+            <div class="wiw-benefit-content">
+              <h3 class="wiw-benefit-title">{{ block.settings.title }}</h3>
+              {%- if block.settings.description != blank -%}
+                <p class="wiw-benefit-desc">{{ block.settings.description }}</p>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+
+    <div class="wiw-image-wrap">
+      {%- if section.settings.image != blank -%}
+        {{
+          section.settings.image
+          | image_url: width: 800
+          | image_tag: loading: 'lazy', widths: '400,600,800', sizes: '(max-width: 768px) 100vw, 50vw'
+        }}
+      {%- else -%}
+        <div class="wiw-image-placeholder">
+          <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+            <rect x="4" y="4" width="40" height="40" rx="4"/>
+            <circle cx="16" cy="16" r="4"/>
+            <path d="M44 32L34 22L12 44"/>
+          </svg>
+          <span>Product image</span>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "KC — Why It Works",
+  "tag": "section",
+  "class": "kc-why-it-works",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Why It Works"
+    },
+    {
+      "type": "textarea",
+      "id": "intro_text",
+      "label": "Introduction text",
+      "default": "Our advanced formula uses clinically studied ingredients that penetrate the nail bed to deliver visible results where other products can't reach."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Product image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "penetration", "label": "Penetration" },
+            { "value": "target", "label": "Target" },
+            { "value": "shield", "label": "Shield" },
+            { "value": "droplet", "label": "Droplet" }
+          ],
+          "default": "penetration"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Benefit title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Describe how this benefit helps improve nail health."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "KC — Why It Works",
+      "blocks": [
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "penetration",
+            "title": "Deep Nail Penetration",
+            "description": "Our formula is designed to penetrate through the nail plate, reaching the nail bed where fungal infections take hold."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "target",
+            "title": "Fights Fungus at the Source",
+            "description": "Targets the root cause of nail discoloration and brittleness with clinically studied antifungal ingredients."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "shield",
+            "title": "Nourishes & Strengthens",
+            "description": "Essential vitamins and nutrients fortify the nail structure, promoting healthier and more resilient growth over time."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "droplet",
+            "title": "Fast-Absorbing Formula",
+            "description": "Lightweight, non-greasy solution absorbs quickly so you can get back to your day without any residue or mess."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,281 @@
+<style>
+  .kc-save {
+    background-color: var(--kc-alt);
+    padding: 80px 0;
+  }
+
+  .kc-save__inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+  }
+
+  .kc-save__heading {
+    font-family: var(--font-heading);
+    font-size: 36px;
+    font-weight: 600;
+    color: var(--kc-text);
+    text-align: center;
+    margin-bottom: 48px;
+    line-height: 1.3;
+  }
+
+  .kc-save__heading em {
+    font-style: italic;
+  }
+
+  .kc-save__cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .kc-save__card {
+    background-color: var(--kc-white);
+    border: 1px solid var(--kc-border);
+    border-radius: var(--card-radius);
+    padding: 36px 32px;
+    position: relative;
+  }
+
+  .kc-save__card--featured {
+    border-color: var(--kc-blue);
+    border-width: 2px;
+  }
+
+  .kc-save__card-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 4px 16px;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 20px;
+    background-color: var(--kc-blue);
+    color: var(--kc-white);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+
+  .kc-save__card-title {
+    font-family: var(--font-body);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--kc-text);
+    margin-bottom: 8px;
+    text-align: center;
+  }
+
+  .kc-save__card-subtitle {
+    font-size: 15px;
+    color: var(--kc-text-secondary);
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  .kc-save__card-list {
+    margin-bottom: 28px;
+  }
+
+  .kc-save__card-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    font-size: 16px;
+    color: var(--kc-text);
+    line-height: 1.4;
+  }
+
+  .kc-save__card-check {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    color: var(--kc-blue);
+    margin-top: 1px;
+  }
+
+  .kc-save__card-btn {
+    display: block;
+    width: 100%;
+    padding: 14px 24px;
+    border-radius: var(--btn-radius);
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 600;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    min-height: 48px;
+    border: 2px solid var(--kc-blue);
+  }
+
+  .kc-save__card-btn--primary {
+    background-color: var(--kc-blue);
+    color: var(--kc-white);
+  }
+
+  .kc-save__card-btn--primary:hover {
+    background-color: var(--kc-blue-hover);
+    border-color: var(--kc-blue-hover);
+    color: var(--kc-white);
+  }
+
+  .kc-save__card-btn--outline {
+    background-color: transparent;
+    color: var(--kc-blue);
+  }
+
+  .kc-save__card-btn--outline:hover {
+    background-color: var(--kc-blue);
+    color: var(--kc-white);
+  }
+
+  @media screen and (max-width: 749px) {
+    .kc-save {
+      padding: 48px 0;
+    }
+
+    .kc-save__heading {
+      font-size: 26px;
+      margin-bottom: 32px;
+    }
+
+    .kc-save__cards {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<section class="kc-save" data-section-id="{{ section.id }}">
+  <div class="kc-save__inner">
+    <h2 class="kc-save__heading">{{ section.settings.heading }}</h2>
+
+    <div class="kc-save__cards">
+      <!-- One-Time Purchase -->
+      <div class="kc-save__card">
+        <h3 class="kc-save__card-title">{{ section.settings.card_1_title }}</h3>
+        <p class="kc-save__card-subtitle">{{ section.settings.card_1_subtitle }}</p>
+
+        <div class="kc-save__card-list">
+          {%- assign items = section.settings.card_1_items | split: '|' -%}
+          {%- for item in items -%}
+            <div class="kc-save__card-item">
+              <svg class="kc-save__card-check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>{{ item | strip }}</span>
+            </div>
+          {%- endfor -%}
+        </div>
+
+        <a href="{{ section.settings.card_1_url }}" class="kc-save__card-btn kc-save__card-btn--outline">
+          {{ section.settings.card_1_button }}
+        </a>
+      </div>
+
+      <!-- Subscribe & Save -->
+      <div class="kc-save__card kc-save__card--featured">
+        <span class="kc-save__card-badge">Recommended</span>
+        <h3 class="kc-save__card-title">{{ section.settings.card_2_title }}</h3>
+        <p class="kc-save__card-subtitle">{{ section.settings.card_2_subtitle }}</p>
+
+        <div class="kc-save__card-list">
+          {%- assign items_2 = section.settings.card_2_items | split: '|' -%}
+          {%- for item in items_2 -%}
+            <div class="kc-save__card-item">
+              <svg class="kc-save__card-check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>{{ item | strip }}</span>
+            </div>
+          {%- endfor -%}
+        </div>
+
+        <a href="{{ section.settings.card_2_url }}" class="kc-save__card-btn kc-save__card-btn--primary">
+          {{ section.settings.card_2_button }}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Save Section",
+  "settings": [
+    {
+      "type": "html",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Save instantly <em>and</em> never run out"
+    },
+    {
+      "type": "text",
+      "id": "card_1_title",
+      "label": "Card 1 title",
+      "default": "One-Time Purchase"
+    },
+    {
+      "type": "text",
+      "id": "card_1_subtitle",
+      "label": "Card 1 subtitle",
+      "default": "Try Keraclear risk-free"
+    },
+    {
+      "type": "textarea",
+      "id": "card_1_items",
+      "label": "Card 1 benefits (separate with |)",
+      "default": "90-day money-back guarantee|Free shipping on 3+ bottles|No commitment required|Choose your package size"
+    },
+    {
+      "type": "text",
+      "id": "card_1_button",
+      "label": "Card 1 button text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "card_1_url",
+      "label": "Card 1 button link"
+    },
+    {
+      "type": "text",
+      "id": "card_2_title",
+      "label": "Card 2 title",
+      "default": "Subscribe & Save"
+    },
+    {
+      "type": "text",
+      "id": "card_2_subtitle",
+      "label": "Card 2 subtitle",
+      "default": "Maximum savings, delivered automatically"
+    },
+    {
+      "type": "textarea",
+      "id": "card_2_items",
+      "label": "Card 2 benefits (separate with |)",
+      "default": "Save an additional 15% on every order|Free shipping — always|Delivered on your schedule|Cancel or pause anytime|Priority customer support"
+    },
+    {
+      "type": "text",
+      "id": "card_2_button",
+      "label": "Card 2 button text",
+      "default": "Subscribe & Save"
+    },
+    {
+      "type": "url",
+      "id": "card_2_url",
+      "label": "Card 2 button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Save Section"
+    }
+  ]
+}
+{% endschema %}

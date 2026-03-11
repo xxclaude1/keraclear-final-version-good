@@ -1,0 +1,227 @@
+{{ 'keraclear.css' | asset_url | stylesheet_tag }}
+
+<style>
+  .kc-cta {
+    background-color: var(--kc-alt, #F5F5FA);
+    padding: 80px var(--content-padding, 24px);
+  }
+
+  .kc-cta__card {
+    max-width: 700px;
+    margin: 0 auto;
+    background-color: var(--kc-white, #FFFFFF);
+    border-radius: var(--card-radius, 12px);
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+    padding: 48px 40px;
+    text-align: center;
+  }
+
+  .kc-cta__icon {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 24px;
+    color: var(--kc-blue, #2E7D32);
+  }
+
+  .kc-cta__icon svg {
+    width: 48px;
+    height: 48px;
+    display: block;
+  }
+
+  .kc-cta__heading {
+    font-family: var(--font-heading, 'Playfair Display', serif);
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--kc-text, #1A1A1A);
+    margin: 0 0 24px;
+  }
+
+  .kc-cta__badges {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+
+  .kc-cta__badge {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--kc-badge-bg, #E8F5E9);
+    color: var(--kc-blue, #2E7D32);
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1;
+    padding: 8px 16px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  .kc-cta__subtext {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--kc-text-secondary, #666666);
+    margin: 0 0 32px;
+  }
+
+  .kc-cta__buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .kc-cta__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 14px 32px;
+    border-radius: var(--btn-radius, 8px);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    min-width: 160px;
+  }
+
+  .kc-cta__btn--filled {
+    background-color: var(--kc-blue, #2E7D32);
+    color: var(--kc-white, #FFFFFF);
+    border: 2px solid var(--kc-blue, #2E7D32);
+  }
+
+  .kc-cta__btn--filled:hover {
+    background-color: var(--kc-blue-hover, #1B5E20);
+    border-color: var(--kc-blue-hover, #1B5E20);
+  }
+
+  .kc-cta__btn--outline {
+    background-color: transparent;
+    color: var(--kc-blue, #2E7D32);
+    border: 2px solid var(--kc-blue, #2E7D32);
+  }
+
+  .kc-cta__btn--outline:hover {
+    background-color: var(--kc-blue, #2E7D32);
+    color: var(--kc-white, #FFFFFF);
+  }
+
+  @media screen and (max-width: 768px) {
+    .kc-cta {
+      padding: 48px var(--content-padding, 24px);
+    }
+
+    .kc-cta__card {
+      padding: 36px 24px;
+    }
+
+    .kc-cta__heading {
+      font-size: 26px;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .kc-cta__badges {
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .kc-cta__buttons {
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .kc-cta__btn {
+      width: 100%;
+    }
+  }
+</style>
+
+<section class="kc-cta" id="cta">
+  <div class="kc-cta__card">
+    <div class="kc-cta__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="24" cy="24" r="20" />
+        <path d="M24 12v24" />
+        <path d="M17 18.5c0-2.5 2-4.5 5-4.5h4c3 0 5 2 5 4.5s-2 4.5-5 4.5H22c-3 0-5 2-5 4.5s2 4.5 5 4.5h4c3 0 5-2 5-4.5" />
+      </svg>
+    </div>
+
+    <h2 class="kc-cta__heading">{{ section.settings.heading }}</h2>
+
+    <div class="kc-cta__badges">
+      <span class="kc-cta__badge">Save 56% (2 bottles)</span>
+      <span class="kc-cta__badge">Save 61% (3 bottles)</span>
+      <span class="kc-cta__badge">Save 73% (6 bottles)</span>
+    </div>
+
+    <p class="kc-cta__subtext">{{ section.settings.subtext }}</p>
+
+    <div class="kc-cta__buttons">
+      <a href="{{ section.settings.shop_url }}" class="kc-cta__btn kc-cta__btn--filled">
+        {{ section.settings.shop_button_text }}
+      </a>
+      <a href="{{ section.settings.login_url }}" class="kc-cta__btn kc-cta__btn--outline">
+        {{ section.settings.login_button_text }}
+      </a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "KC Save Today CTA",
+  "tag": "section",
+  "class": "kc-cta-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Save today with Keraclear!"
+    },
+    {
+      "type": "text",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "Plus free shipping on 3+ bottle orders"
+    },
+    {
+      "type": "text",
+      "id": "shop_button_text",
+      "label": "Shop button text",
+      "default": "SHOP NOW"
+    },
+    {
+      "type": "url",
+      "id": "shop_url",
+      "label": "Shop button link"
+    },
+    {
+      "type": "text",
+      "id": "login_button_text",
+      "label": "Login button text",
+      "default": "LOG IN"
+    },
+    {
+      "type": "url",
+      "id": "login_url",
+      "label": "Login button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "KC Save Today CTA"
+    }
+  ]
+}
+{% endschema %}

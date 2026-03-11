@@ -1,0 +1,277 @@
+<style>
+  .kc-reviews {
+    background-color: var(--kc-white);
+    padding: 80px 0;
+  }
+
+  .kc-reviews__inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+  }
+
+  .kc-reviews__heading {
+    font-family: var(--font-heading);
+    font-size: 36px;
+    font-weight: 600;
+    color: var(--kc-text);
+    text-align: center;
+    margin-bottom: 48px;
+    line-height: 1.3;
+  }
+
+  .kc-reviews__heading em {
+    font-style: italic;
+  }
+
+  .kc-reviews__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+
+  .kc-reviews__card {
+    background-color: var(--kc-white);
+    border: 1px solid var(--kc-border);
+    border-radius: var(--card-radius);
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .kc-reviews__card-stars {
+    display: flex;
+    gap: 2px;
+    margin-bottom: 16px;
+  }
+
+  .kc-reviews__card-stars svg {
+    width: 16px;
+    height: 16px;
+    fill: var(--kc-star);
+  }
+
+  .kc-reviews__card-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--kc-text);
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  .kc-reviews__card-text {
+    font-size: 16px;
+    color: var(--kc-text-secondary);
+    line-height: 1.6;
+    flex-grow: 1;
+    margin-bottom: 20px;
+  }
+
+  .kc-reviews__card-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: 16px;
+    border-top: 1px solid var(--kc-border);
+  }
+
+  .kc-reviews__card-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--kc-badge-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--kc-blue);
+    font-size: 16px;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+
+  .kc-reviews__card-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--kc-text);
+  }
+
+  .kc-reviews__card-location {
+    font-size: 13px;
+    color: var(--kc-text-secondary);
+  }
+
+  .kc-reviews__card-verified {
+    font-size: 12px;
+    color: var(--kc-blue);
+    font-weight: 600;
+  }
+
+  .kc-reviews__cta {
+    text-align: center;
+  }
+
+  .kc-reviews__cta a {
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--kc-blue);
+  }
+
+  .kc-reviews__cta a:hover {
+    color: var(--kc-blue-hover);
+  }
+
+  @media screen and (max-width: 989px) {
+    .kc-reviews__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .kc-reviews {
+      padding: 48px 0;
+    }
+
+    .kc-reviews__heading {
+      font-size: 26px;
+      margin-bottom: 32px;
+    }
+
+    .kc-reviews__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<section class="kc-reviews" data-section-id="{{ section.id }}">
+  <div class="kc-reviews__inner">
+    <h2 class="kc-reviews__heading">{{ section.settings.heading }}</h2>
+
+    <div class="kc-reviews__grid">
+      {%- for block in section.blocks -%}
+        <div class="kc-reviews__card" {{ block.shopify_attributes }}>
+          <div class="kc-reviews__card-stars">
+            {%- assign star_count = block.settings.stars | default: 5 -%}
+            {%- for i in (1..star_count) -%}
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            {%- endfor -%}
+          </div>
+
+          <h3 class="kc-reviews__card-title">{{ block.settings.title }}</h3>
+          <p class="kc-reviews__card-text">{{ block.settings.text }}</p>
+
+          <div class="kc-reviews__card-author">
+            <div class="kc-reviews__card-avatar">
+              {{ block.settings.name | slice: 0 }}
+            </div>
+            <div>
+              <div class="kc-reviews__card-name">{{ block.settings.name }}</div>
+              {%- if block.settings.location != blank -%}
+                <div class="kc-reviews__card-location">{{ block.settings.location }}</div>
+              {%- endif -%}
+              <div class="kc-reviews__card-verified">Verified Buyer</div>
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+
+    <div class="kc-reviews__cta">
+      <a href="/products/keraclear-antifungal-nail-serum#reviews">See More Reviews &rarr;</a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Reviews",
+  "settings": [
+    {
+      "type": "html",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<em>Real people</em> are living real change."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        {
+          "type": "range",
+          "id": "stars",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5,
+          "label": "Star rating"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Review title",
+          "default": "Great product!"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Review text",
+          "default": "This product really works."
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Customer name",
+          "default": "Customer"
+        },
+        {
+          "type": "text",
+          "id": "location",
+          "label": "Location",
+          "default": "United States"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Reviews",
+      "blocks": [
+        {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "title": "Finally something that actually works!",
+            "text": "I've tried everything — pills, creams, even vinegar soaks. After 6 weeks of Keraclear, I could see new clear nail growth. Month 3 now and my nails look better than they have in years.",
+            "name": "Robert M.",
+            "location": "Tampa, FL"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "title": "Wish I found this sooner",
+            "text": "I was embarrassed to wear sandals for 5 years. Keraclear was the perfect alternative — natural ingredients, easy to apply, and it actually delivered results.",
+            "name": "Patricia K.",
+            "location": "Phoenix, AZ"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "title": "The best nail treatment I've used",
+            "text": "As a nurse on my feet all day, I was skeptical. But Keraclear's oil formula absorbs so much better than creams. After 8 weeks, the discoloration is almost completely gone.",
+            "name": "Sandra L.",
+            "location": "Chicago, IL"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

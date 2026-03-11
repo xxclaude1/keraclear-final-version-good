@@ -1,0 +1,133 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "kc-hero",
+      "settings": {
+        "eyebrow": "Doctor-Formulated",
+        "heading": "Clinically-Studied Nail Health From a Board-Certified Dermatologist",
+        "text": "Dr. Landford's proprietary antifungal serum penetrates through the nail bed to fight fungus at its source — naturally, safely, and effectively.",
+        "image": "shopify://shop_images/hf_20260310_082626_50459163-f702-4cd2-b95e-3056b6fe185c.jpg",
+        "button_text": "Shop Now",
+        "button_url": "shopify://products/keraclear-serum-softening-cream-whitening-and-brightening",
+        "button_2_text": "Log In",
+        "button_2_url": "/account/login",
+        "disclaimer": "90-day money-back guarantee on all orders."
+      }
+    },
+    "goals": {
+      "type": "kc-goals",
+      "blocks": {
+        "goal-1": {
+          "type": "goal",
+          "settings": {
+            "icon": "shield",
+            "label": "Fight Fungus"
+          }
+        },
+        "goal-2": {
+          "type": "goal",
+          "settings": {
+            "icon": "sparkle",
+            "label": "Restore Clarity"
+          }
+        },
+        "goal-3": {
+          "type": "goal",
+          "settings": {
+            "icon": "droplet",
+            "label": "Deep Penetration"
+          }
+        },
+        "goal-4": {
+          "type": "goal",
+          "settings": {
+            "icon": "heart",
+            "label": "Nourish Nails"
+          }
+        },
+        "goal-5": {
+          "type": "goal",
+          "settings": {
+            "icon": "leaf",
+            "label": "Natural Formula"
+          }
+        }
+      },
+      "block_order": [
+        "goal-1",
+        "goal-2",
+        "goal-3",
+        "goal-4",
+        "goal-5"
+      ],
+      "settings": {
+        "heading": "What are your <em>nail health goals?</em>"
+      }
+    },
+    "guarantee": {
+      "type": "kc-guarantee",
+      "settings": {
+        "heading": "Our 90-Day Money-Back Guarantee",
+        "text": "We're confident Keraclear will deliver visible results. If you're not completely satisfied within 90 days, contact us for a full refund — no questions asked. Your satisfaction is our priority."
+      }
+    },
+    "reviews": {
+      "type": "kc-reviews",
+      "blocks": {
+        "review-1": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "title": "Finally something that actually works!",
+            "text": "I've tried everything — pills, creams, even vinegar soaks. After 6 weeks of Keraclear, I could see new clear nail growth. Month 3 now and my nails look better than they have in years.",
+            "name": "Robert M.",
+            "location": "Tampa, FL"
+          }
+        },
+        "review-2": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "title": "Wish I found this sooner",
+            "text": "I was embarrassed to wear sandals for 5 years. Keraclear was the perfect alternative — natural ingredients, easy to apply, and it actually delivered results.",
+            "name": "Patricia K.",
+            "location": "Phoenix, AZ"
+          }
+        },
+        "review-3": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "title": "The best nail treatment I've used",
+            "text": "As a nurse on my feet all day, I was skeptical. But Keraclear's oil formula absorbs so much better than creams. After 8 weeks, the discoloration is almost completely gone.",
+            "name": "Sandra L.",
+            "location": "Chicago, IL"
+          }
+        }
+      },
+      "block_order": [
+        "review-1",
+        "review-2",
+        "review-3"
+      ],
+      "settings": {
+        "heading": "<em>Real people</em> are living real change."
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "goals",
+    "guarantee",
+    "reviews"
+  ]
+}

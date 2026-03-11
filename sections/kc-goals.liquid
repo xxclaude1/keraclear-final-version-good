@@ -1,0 +1,178 @@
+<style>
+  .kc-goals {
+    background-color: var(--kc-white);
+    padding: 64px 0;
+  }
+
+  .kc-goals__inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+    text-align: center;
+  }
+
+  .kc-goals__heading {
+    font-family: var(--font-heading);
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--kc-text);
+    margin-bottom: 48px;
+  }
+
+  .kc-goals__heading em {
+    font-style: italic;
+  }
+
+  .kc-goals__grid {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+
+  .kc-goals__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    max-width: 160px;
+  }
+
+  .kc-goals__icon {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    background-color: var(--kc-badge-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--kc-blue);
+    flex-shrink: 0;
+  }
+
+  .kc-goals__icon svg {
+    width: 36px;
+    height: 36px;
+  }
+
+  .kc-goals__label {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--kc-text);
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  @media screen and (max-width: 749px) {
+    .kc-goals {
+      padding: 48px 0;
+    }
+
+    .kc-goals__heading {
+      font-size: 26px;
+      margin-bottom: 32px;
+    }
+
+    .kc-goals__grid {
+      gap: 32px;
+    }
+
+    .kc-goals__item {
+      max-width: 130px;
+    }
+
+    .kc-goals__icon {
+      width: 72px;
+      height: 72px;
+    }
+
+    .kc-goals__icon svg {
+      width: 28px;
+      height: 28px;
+    }
+  }
+</style>
+
+<section class="kc-goals" data-section-id="{{ section.id }}">
+  <div class="kc-goals__inner">
+    <h2 class="kc-goals__heading">{{ section.settings.heading }}</h2>
+
+    <div class="kc-goals__grid">
+      {%- for block in section.blocks -%}
+        <div class="kc-goals__item" {{ block.shopify_attributes }}>
+          <div class="kc-goals__icon">
+            {%- case block.settings.icon -%}
+              {%- when 'shield' -%}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              {%- when 'sparkle' -%}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              {%- when 'droplet' -%}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg>
+              {%- when 'heart' -%}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+              {%- when 'leaf' -%}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66.95-2.3c.48.17.98.3 1.34.3C19 20 22 3 22 3c-1 2-8 2.25-13 3.25S2 11.5 2 13.5s1.75 3.75 1.75 3.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              {%- else -%}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+            {%- endcase -%}
+          </div>
+          <span class="kc-goals__label">{{ block.settings.label }}</span>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Goals",
+  "settings": [
+    {
+      "type": "html",
+      "id": "heading",
+      "label": "Heading (supports HTML for italics)",
+      "default": "What are your <em>nail health goals?</em>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "goal",
+      "name": "Goal",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "shield", "label": "Shield" },
+            { "value": "sparkle", "label": "Star" },
+            { "value": "droplet", "label": "Droplet" },
+            { "value": "heart", "label": "Heart" },
+            { "value": "leaf", "label": "Leaf" }
+          ],
+          "default": "shield"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Goal"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Goals",
+      "blocks": [
+        { "type": "goal", "settings": { "icon": "shield", "label": "Fight Fungus" } },
+        { "type": "goal", "settings": { "icon": "sparkle", "label": "Restore Clarity" } },
+        { "type": "goal", "settings": { "icon": "droplet", "label": "Deep Penetration" } },
+        { "type": "goal", "settings": { "icon": "heart", "label": "Nourish Nails" } },
+        { "type": "goal", "settings": { "icon": "leaf", "label": "Natural Formula" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

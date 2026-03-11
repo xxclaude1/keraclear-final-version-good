@@ -1,0 +1,298 @@
+{{ 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700&display=swap' | stylesheet_tag }}
+
+<style>
+  .kc-faq {
+    background-color: var(--kc-alt, #F5F5FA);
+    padding: 80px var(--content-padding, 24px);
+  }
+
+  .kc-faq__inner {
+    max-width: var(--max-width, 1200px);
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .kc-faq__heading {
+    font-family: var(--font-heading, 'Playfair Display', serif);
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--kc-text, #1A1A1A);
+    margin: 0 0 16px;
+    line-height: 1.2;
+  }
+
+  .kc-faq__subtitle {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 16px;
+    color: var(--kc-text-secondary, #666666);
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto 48px;
+  }
+
+  .kc-faq__list {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  .kc-faq__item {
+    background: var(--kc-white, #FFFFFF);
+    border-radius: var(--card-radius, 12px);
+    margin-bottom: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  }
+
+  .kc-faq__question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 20px 24px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--kc-text, #1A1A1A);
+    line-height: 1.4;
+    text-align: left;
+    gap: 16px;
+    transition: color 0.2s ease;
+  }
+
+  .kc-faq__question:hover {
+    color: var(--kc-blue, #2E7D32);
+  }
+
+  .kc-faq__icon {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--kc-blue, #2E7D32);
+    transition: transform 0.3s ease;
+    line-height: 1;
+  }
+
+  .kc-faq__item.is-open .kc-faq__icon {
+    transform: rotate(45deg);
+  }
+
+  .kc-faq__answer-wrapper {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+  }
+
+  .kc-faq__answer {
+    padding: 0 24px 20px;
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 16px;
+    color: var(--kc-text-secondary, #666666);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .kc-faq__footer {
+    margin-top: 40px;
+    text-align: center;
+  }
+
+  .kc-faq__footer a {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--kc-blue, #2E7D32);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .kc-faq__footer a:hover {
+    color: var(--kc-blue-hover, #1B5E20);
+    text-decoration: underline;
+  }
+
+  @media screen and (max-width: 749px) {
+    .kc-faq {
+      padding: 48px var(--content-padding, 24px);
+    }
+
+    .kc-faq__heading {
+      font-size: 26px;
+    }
+
+    .kc-faq__subtitle {
+      font-size: 15px;
+      margin-bottom: 32px;
+    }
+
+    .kc-faq__question {
+      font-size: 16px;
+      padding: 18px 20px;
+    }
+
+    .kc-faq__answer {
+      padding: 0 20px 18px;
+      font-size: 15px;
+    }
+  }
+</style>
+
+<section class="kc-faq" id="faq">
+  <div class="kc-faq__inner">
+    <h2 class="kc-faq__heading">{{ section.settings.heading }}</h2>
+    <p class="kc-faq__subtitle">{{ section.settings.subtitle }}</p>
+
+    <div class="kc-faq__list" role="list">
+      {%- for block in section.blocks -%}
+        <div class="kc-faq__item" {{ block.shopify_attributes }} role="listitem">
+          <button class="kc-faq__question" aria-expanded="false" aria-controls="kc-faq-answer-{{ block.id }}">
+            <span>{{ block.settings.question }}</span>
+            <span class="kc-faq__icon" aria-hidden="true">+</span>
+          </button>
+          <div class="kc-faq__answer-wrapper" id="kc-faq-answer-{{ block.id }}" role="region">
+            <p class="kc-faq__answer">{{ block.settings.answer }}</p>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+
+    <div class="kc-faq__footer">
+      <a href="{{ pages['contact'].url | default: '/pages/contact' }}">Have more questions? Let us know!</a>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function() {
+    var section = document.querySelector('.kc-faq');
+    if (!section) return;
+
+    var items = section.querySelectorAll('.kc-faq__item');
+
+    items.forEach(function(item) {
+      var button = item.querySelector('.kc-faq__question');
+      var answerWrapper = item.querySelector('.kc-faq__answer-wrapper');
+
+      button.addEventListener('click', function() {
+        var isOpen = item.classList.contains('is-open');
+
+        /* Close all items first */
+        items.forEach(function(otherItem) {
+          if (otherItem !== item) {
+            otherItem.classList.remove('is-open');
+            otherItem.querySelector('.kc-faq__question').setAttribute('aria-expanded', 'false');
+            otherItem.querySelector('.kc-faq__answer-wrapper').style.maxHeight = null;
+          }
+        });
+
+        /* Toggle the clicked item */
+        if (isOpen) {
+          item.classList.remove('is-open');
+          button.setAttribute('aria-expanded', 'false');
+          answerWrapper.style.maxHeight = null;
+        } else {
+          item.classList.add('is-open');
+          button.setAttribute('aria-expanded', 'true');
+          answerWrapper.style.maxHeight = answerWrapper.scrollHeight + 'px';
+        }
+      });
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "KC — FAQ",
+  "tag": "section",
+  "class": "kc-faq-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Frequently Asked Questions"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "We believe in transparency. Here are answers to our most common questions."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "KC — FAQ",
+      "blocks": [
+        {
+          "type": "faq",
+          "settings": {
+            "question": "How long does it take to see results?",
+            "answer": "Most customers report visible improvement within 4-8 weeks of consistent daily use. Nails grow slowly, so full results are typically seen over 3-6 months. The 6-bottle package is our most popular because it provides a full treatment cycle."
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Is Keraclear safe to use?",
+            "answer": "Yes. Keraclear is made with natural ingredients that have been extensively studied for their safety and efficacy. It contains no harsh chemicals, parabens, or artificial fragrances. However, if you have known allergies, we recommend reviewing the full ingredient list or consulting with your healthcare provider."
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "How do I use Keraclear?",
+            "answer": "Apply 2-3 drops directly to each affected nail once daily, preferably after showering when nails are clean and slightly softened. Gently massage the solution into the nail and surrounding cuticle area. Allow it to absorb fully before putting on socks or shoes."
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "What is the 90-day guarantee?",
+            "answer": "If you're not satisfied within 90 days of your purchase, simply contact our customer support team for a full refund — no questions asked. We stand behind our product because we've seen the results thousands of customers have achieved."
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Can I use it on fingernails too?",
+            "answer": "Yes, Keraclear works on both finger and toenails. The same natural formula that restores toenails is equally effective on fingernails. Simply apply the same way — 2-3 drops per affected nail daily."
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "How many bottles do I need?",
+            "answer": "For mild cases, the 2-bottle (60-day) package is a great starting point. For moderate to severe cases, or if multiple nails are affected, we recommend the 6-bottle (180-day) package for the best results and biggest savings. Consistency over several months is key to lasting improvement."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
